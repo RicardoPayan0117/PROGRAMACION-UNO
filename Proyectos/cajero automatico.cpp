@@ -13,29 +13,31 @@ int main(void){
 	setlocale(LC_ALL, "");
 
 	while (pin != 2001){
-		printf("Por favor, ingrese su PIN:\n");
+		printf(" Ingrese su PIN:\n");
 		scanf("%d", &pin);
 		if (pin != 2001)
-		printf("ingrese su contraseña.\n");
+		printf(" Ingrese su contraseña.\n");
 	}
 	do{
 		printf("***Bienvenido al cajero automático***\n");
+		printf(" \n");
 		printf("1. Verificar saldo.\n");
 		printf("2. Retirar dinero.\n");
 		printf("3. Depositar dinero.\n");
 		printf("4. Salir.\n");
-		printf("**************************************************\n\n");
-		printf("Ingrese su elección:\n");
+		printf(" \n");
+		printf(" ¿Que movimiento desea realizar? \n");
 		scanf("%d", &opcion);
 		switch (opcion){
 		
 		case 1:
-			printf("\n Tu balance en S/%d ", saldo); break;
+			printf("\n Su saldo es de S/%d ", saldo); break;
 		
 		case 2:
 			printf("\n Ingrese el monto a retirar:\n");
 			scanf("%f", &retirar);
-			if (retirar >(saldo - 500)){
+			if (retirar >(saldo - 
+			500)){
 				printf("\n Saldo insuficiente.");
 			}
 			else{
