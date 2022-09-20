@@ -7,7 +7,7 @@ int saldo = 2500;
 float depositar, retirar;
 int opcion, pin, G;
 char transaction ='s';
-
+int caracter;
 using namespace std;
 
 int main(void)
@@ -20,7 +20,6 @@ int main(void)
 		cin >> pin;
 		if (pin != 2001)
 		cout << " El PIN proporcionado es incorrecto. \n";
-	
 	}
 	do  {
 		cout << " \n";
