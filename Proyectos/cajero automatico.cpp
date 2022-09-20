@@ -8,62 +8,69 @@ float depositar, retirar;
 int opcion, pin, G;
 char transaction ='s';
 
-int main(void){
+using namespace std;
+
+int main(void)
+{
 	
 	setlocale(LC_ALL, "");
 
 	while (pin != 2001){
-		printf(" Ingrese su PIN:\n");
-		scanf("%d", &pin);
+		cout <<" Ingrese su PIN:\n";
+		cin >> pin;
 		if (pin != 2001)
-		printf(" Ingrese su contraseña.\n");
+		cout << " Ingrese su contraseña.\n";
 	}
 	do{
-		printf("***Bienvenido al cajero automático***\n");
-		printf(" \n");
-		printf("1. Verificar saldo.\n");
-		printf("2. Retirar dinero.\n");
-		printf("3. Depositar dinero.\n");
-		printf("4. Salir.\n");
-		printf(" \n");
-		printf(" ¿Que movimiento desea realizar? \n");
-		scanf("%d", &opcion);
+		cout << "***Bienvenido al cajero automático***\n";
+		cout << " \n";
+		cout << "1. Verificar saldo.\n";
+		cout << "2. Retirar dinero.\n";
+		cout << "3. Depositar dinero.\n";
+		cout << "4. Salir.\n";
+		cout << " \n";
+		cout << " ¿Que movimiento desea realizar? \n";
+		cin >> opcion;
 		switch (opcion){
 		
 		case 1:
-			printf("\n Su saldo es de S/%d ", saldo); break;
+			cout << "\n Su saldo es de " << saldo << "$.";
+			 break;
 		
 		case 2:
-			printf("\n Ingrese el monto a retirar:\n");
-			scanf("%f", &retirar);
-			if (retirar >(saldo - 
-			500)){
-				printf("\n Saldo insuficiente.");
+			cout << " Ingrese el monto a retirar:\n";
+			cin >> retirar;
+			if (retirar >(saldo - 0)){
+				cout <<"\n Su saldo es insuficiente.";
 			}
 			else{
 				saldo = saldo - retirar;
-				printf("\n\n Por favor, cobrar dinero en efectivo.");
-				printf("\n Tu saldo actual es %f", saldo);
+				cout << "\n\n Por favor, cobrar dinero en efectivo, " << retirar <<"$.";
+				cout << "\n Tu saldo actual es "<< saldo << "$.";
 			} break;
 		
 		case 3:
-			printf("\n Ingrese la cantidad para depositar:\n");
-			scanf("%f", &depositar);
+			cout << "\n Ingrese la cantidad para depositar:\n";
+			cin >> depositar;
             saldo = saldo + depositar;
-			printf("Tu saldo es %f", saldo); break;
+			cout << " Tu saldo es " << saldo << "$."; 
+			break;
 		
 		case 4:
-			printf("\n Gracias por usar el cajero automático!"); break;
+			cout << "\n Gracias por usar el cajero automático!"; 
+			break;
 		
 		default:
-			printf("\n Elección inválida");
+			cout << "\n Elección inválida";
+			break;
+	
 		}
 	
-		printf("\n\n\n ¿Desea tener otra transacción?(s/n): \n");
+		cout << "\n\n\n ¿Desea tener otra transacción?(s/n): \n";
 		fflush(stdin);
-		scanf("%c", &transaction);
+		cin >>transaction;
 		if (transaction == 'n'|| transaction == 'N')
                     G = 1;
 	} while (!G);
-	printf("\n\n Gracias por utilizar el servicio del cajero automático!");
+	cout << "\n\n Gracias por utilizar el cajero automático";
 }
