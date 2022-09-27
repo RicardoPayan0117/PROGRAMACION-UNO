@@ -7,15 +7,16 @@ int saldo = 2500;
 float depositar, retirar;
 int opcion, pin, G;
 char transaction ='s';
-int caracter;
 using namespace std;
 
 int main(void)
 {
-	
-	setlocale(LC_ALL, "");
+	system("color 0d");
+		setlocale(LC_ALL, "");
 
 	while (pin != 2001){
+			cin.clear();
+		fflush(stdin);
 		cout <<" Ingrese su PIN:\n";
 		cin >> pin;
 		if (pin != 2001)
@@ -33,6 +34,8 @@ int main(void)
 		cout << " ¿Que movimiento desea realizar? \n";
 		cin >> opcion;
 			cout << " \n";
+				cin.clear();
+		fflush(stdin);
 		switch (opcion)
 
 		{
