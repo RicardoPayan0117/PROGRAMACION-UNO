@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdio.h> 
 
-int saldo = 2500;
+int saldo= 2500;
 float depositar, retirar;
 int opcion, pin, G;
 char transaction ='s';
@@ -11,7 +11,7 @@ using namespace std;
 
 int main(void)
 {
-	system("color 0d");
+		system("color 0d");
 		setlocale(LC_ALL, "");
 
 	while (pin != 2001){
@@ -24,14 +24,14 @@ int main(void)
 	}
 	do  {
 		cout << " \n";
-		cout << "***Bienvenido al cajero automático***\n";
+		cout << "***Bienvenido al cajero automÃ¡tico***\n";
 		cout << " \n";
 		cout << "1. Verificar saldo.\n";
 		cout << "2. Retirar dinero.\n";
 		cout << "3. Depositar dinero.\n";
 		cout << "4. Salir.\n";
 		cout << " \n";
-		cout << " ¿Que movimiento desea realizar? \n";
+		cout << " Â¿Que movimiento desea realizar? \n";
 		cin >> opcion;
 			cout << " \n";
 				cin.clear();
@@ -45,7 +45,7 @@ int main(void)
 		break;
 		
 		case 2:
-			cout << " Ingrese el monto a retirar:\n";
+			cout << "Ingrese el monto a retirar:\n";
 			cin >> retirar;
 		if (retirar >(saldo - 0)){
 				cout <<"\n Su saldo es insuficiente.";
@@ -65,20 +65,21 @@ int main(void)
 			break;
 		
 		case 4:
-			cout << "\n Gracias por usar el cajero automático!";
+			cout << "\n Gracias por usar el cajero automatico!";
 			break;
 		
 		default:
-			cout << "\n Elección inválida";	
+			cout << "\n ElecciÃ³n invÃ¡lida";	
 			break;
 	
 			}
 	
-		cout << "\n\n\n ¿Desea tener otra transacción?(s/n): \n";
+		cout << "\n\n\n Â¿Desea tener otra transaccion?(s/n): \n";
 		fflush(stdin);
 		cin >>transaction;
 		if (transaction == 'n'|| transaction == 'N')
                     G = 1;
 	} while (!G);
-	cout << "\n\n Gracias por utilizar el cajero automático";
+	cout << "\n\n Gracias por utilizar el cajero automatico";
+	
 }
