@@ -1,17 +1,14 @@
 #include <iostream>
 #include <stdlib.h>
-#include <ctype.h>
-#include <stdio.h>
 
 using namespace std;
 
 	string usuario;
 	string tareas[50][2];
-	string ingresaTarea;
 	
 	int opcion, numeroDeTarea, tarea;
-	int cimaTarea = 0, entrar = 1, indice = -1;
-
+	int cimaTarea = 0,cimaEstado, entrar = 1, indice = -1;
+                    
 void menu() // menu para ver las opciones.
 {
 	system("color 0d");
@@ -33,8 +30,10 @@ void menu() // menu para ver las opciones.
 void ingresarTarea() //void opcion 1.
 {
 	system("color 0a");
+	
 	cout << "Describa la tarea: " <<endl;
-	cin>> tareas[cimaTarea][1];//ingresa la tarea en la cima(espacio libre mas alto de la matriz)
+	cin  >> tareas[cimaTarea][2];
+	//cin  >> tareas[cimaTarea][1];//ingresa la tarea en la cima(espacio libre mas alto de la matriz)
 	tareas[cimaTarea][2] = "| No iniciada       |"; //anota el esatdo de la tarea(en este caso no iniciada).
 	cimaTarea++;//eleva el valor de cima en uno para apuntar al siguiente espacio libre.
 	
@@ -66,7 +65,6 @@ void tareaTerminada() //void opcion 3.
 		cout<< "No tienes tareas." <<endl;
 	}else{ //si hay tareas busca.
 		cout << "Que tarea desea buscar?" <<endl;
- 	
 	 	cin >> tarea;
  	}
  }
@@ -131,13 +129,7 @@ cin  >> usuario;
 			ingresarUsuario();
 			cout << "Opcion: " <<endl;
 			cin  >> opcion;
-			
-			char ch = opcion;
-			if (isdigit(ch)){
-        	cout <<endl;
-    }else{
-    	cout << "Solo se pueden ingresar numeros" <<endl;
-	}		
+				
 			switch(opcion) //se usa para intentar ingresar el usaurio otra vez o salir del programa.
 			{
 			case 1:
@@ -148,6 +140,8 @@ cin  >> usuario;
 				return 0;
 			break;
 			}
+	
+		}else{
     while(entrar == 1 ) //Mantiene el programa abierto.
     {
         menu();  
