@@ -1,4 +1,5 @@
 #include<iostream>
+#include<fstream>
 
 using namespace std;
 	
@@ -29,6 +30,8 @@ void cambioPIN()
 	
 void transferirSaldo()
 {
+			ofstream cajero;
+			cajero.open("cajero.txt",ios::out);
 	system("color 0a");
 	
 		cout << "Ingrese el monto a transferir: " <<endl;
@@ -42,12 +45,17 @@ void transferirSaldo()
 				saldo[i] = saldo[i] - retirar;
 				saldo[a] = saldo[a] + retirar;
 				cout << "Se uso la cuenta "<< usuario[i] <<" para transferir un total de " << retirar <<"$." <<endl;
-				cout << "Tu saldo actual es "<< saldo[i] << "$." <<endl;	
+				cout << "Tu saldo actual es "<< saldo[i] << "$." <<endl;
+				
+					cajero << "\n Se uso la cuenta: "<< usuario[i] <<" para transferir un total de " << retirar << " a la cuenta: "<< usuario[a] <<"$.";
+					cajero << "\n Tu saldo actual es "<< saldo[i] << "$.";	
 			}
 }	
 	
 void depositarSaldo()
 {
+			ofstream cajero;
+			cajero.open("cajero.txt",ios::out);
 	system("color 0a");
 	
 	cout << " Ingrese la cantidad para depositar: " <<endl;
@@ -57,11 +65,16 @@ void depositarSaldo()
 	}else{
 		saldo[i] = saldo[i] + depositar;
 		cout << " Tu saldo es " << saldo[i] << "$." <<endl;
+		
+			cajero << "\n Se deposito un total de: " << depositar << "$.";
 	}
 }
 
 void retirarSaldo()
 {
+			ofstream cajero;
+			cajero.open("cajero.txt",ios::out);
+			
 	system("color 0a");
 	
 	cout << "Ingrese el monto a retirar: " <<endl;
@@ -73,8 +86,11 @@ void retirarSaldo()
 			cout << "No puedes de retirar un saldo negativo" <<endl; 
 			}else{
 				saldo[i] = saldo[i] - retirar;
-				cout << "\n Por favor, cobrar dinero en efectivo, " << retirar <<"$." <<endl;
-				cout << "\n Tu saldo actual es "<< saldo[i] << "$." <<endl;
+				cout << "Retiraste " << retirar <<"$. De tu cuenta." <<endl;
+				cout << "Tu saldo actual es "<< saldo[i] << "$." <<endl;
+				
+					cajero << "Retiraste " << retirar <<"$. De tu cuenta.";
+					cajero << "Tu saldo actual es "<< saldo[i] << "$.";
 			}
 }
 
@@ -95,12 +111,17 @@ system("color 0c");
 
 void salir() //void opcion 0.
 {
+			ofstream cajero;
+			cajero.open("cajero.txt",ios::out);
+			
 	system("cls");
 	system("color 0c");
 	
    	cout <<endl;
 	cout << "Gracias por usar el cajero automatico..." <<endl;
 	cout <<endl;
+	
+		cajero << "Gracias por usar el cajero automatico...";
 }
 
  void opcionInvalida()//void para la opcion default.
@@ -115,11 +136,15 @@ void salir() //void opcion 0.
 
 void verificarSaldo()
 {
+			ofstream cajero;
+			cajero.open("cajero.txt",ios::out);
 	system("color 0a");
 	
 	cout << "Su saldo es de " << saldo[i] << "$." <<endl;
 	cout <<endl;
 	system("pause");	
+	
+		cajero << "su saldo es de " << saldo[i] <<"$.";
 } 
 
 void menu() // menu para ver las opciones.
@@ -146,6 +171,9 @@ void menu() // menu para ver las opciones.
 
 int main() //main
 {
+			ofstream cajero;
+			cajero.open("cajero.txt",ios::out);
+			
 system("color 0d");
 
 	cout << "Ingrese el usuario: " <<endl;
@@ -169,7 +197,7 @@ system("color 0d");
 	}else{
 		switch(opcion)
         {
-        	case 0: // opcion 0(cierra el programa).	
+        	case 9: // opcion 0(cierra el programa).	
         		salir();
         		return 0;
         	break; //Fin case 0;
@@ -289,4 +317,5 @@ system("color 0d");
 		}
 	}
  }//fin usuario.
-}//Fin main.	
+ cajero.close();
+}//Fin main.
