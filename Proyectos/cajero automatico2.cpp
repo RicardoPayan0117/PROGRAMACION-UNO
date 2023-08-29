@@ -9,14 +9,23 @@ using namespace std;
 	int saldo[2] = {2500, 3200};
 	int entrar = 1, opcion, depositar, retirar, i, a; //i se usa para elegir la posicion de saldo que este usando y a para la contraria; 
 
-void cambioPIN()
-{
+void cambioPIN(){
 	system("color 0c");
 	
 	cout << "Ingrese el nuevo PIN: " <<endl;
 	cin  >> cambio1;
+	if (retirar == false){
+		cout << "ingrese una opcion valida." <<endl;
+		cin.clear();
+		fflush(stdin);
+	}else{
 	cout << "Confirme el nuevo PIN: " <<endl;
 	cin  >> cambio2;
+	if (retirar == false){
+		cout << "ingrese una opcion valida." <<endl;
+		cin.clear();
+		fflush(stdin);
+	}else{
 	if (cambio1 != cambio2){
 		cout << "No coincide con el PIN anterior." <<endl;
 	}else if(cambio1 == PIN[i]){
@@ -25,6 +34,9 @@ void cambioPIN()
 		cout <<endl;
 		cout << "El PIN se cambio exitosamente." <<endl;
 			PIN[i] = cambio1;
+
+ }
+ }
 	}
 }
 	
@@ -36,6 +48,11 @@ void transferirSaldo()
 	
 		cout << "Ingrese el monto a transferir: " <<endl;
 			cin >> retirar;
+	if (retirar == false){
+		cout << "ingrese una opcion valida." <<endl;
+		cin.clear();
+		fflush(stdin);
+	}else{
 		if (retirar >(saldo[i] - 0)){
 				cout <<"Su saldo es insuficiente." <<endl;
 			
@@ -50,6 +67,7 @@ void transferirSaldo()
 					cajero << "\n Se uso la cuenta: "<< usuario[i] <<" para transferir un total de " << retirar << " a la cuenta: "<< usuario[a] <<"$.";
 					cajero << "\n Tu saldo actual es "<< saldo[i] << "$.";	
 			}
+}
 }	
 	
 void depositarSaldo()
@@ -60,13 +78,19 @@ void depositarSaldo()
 	
 	cout << " Ingrese la cantidad para depositar: " <<endl;
 	cin >> depositar;
-	if(depositar <= 0){
+		if (retirar == false){
+		cout << "ingrese una opcion valida." <<endl;
+		cin.clear();
+		fflush(stdin);
+	}else{
+	if(depositar <= 0 or retirar >=10000){
 		cout << "No puedes de depositar un saldo negativo" <<endl; 
 	}else{
 		saldo[i] = saldo[i] + depositar;
 		cout << " Tu saldo es " << saldo[i] << "$." <<endl;
 		
 			cajero << "\n Se deposito un total de: " << depositar << "$.";
+	}
 	}
 }
 
@@ -79,10 +103,15 @@ void retirarSaldo()
 	
 	cout << "Ingrese el monto a retirar: " <<endl;
 			cin >> retirar;
+	if (retirar == false){
+		cout << "ingrese una opcion valida." <<endl;
+		cin.clear();
+		fflush(stdin);
+	}else{
 		if (retirar >(saldo[i] - 0)){
 				cout <<"Su saldo es insuficiente." <<endl;
 			
-		}else if(retirar <= 0){
+		}else if(retirar <= 0 or retirar >= 10000){
 			cout << "No puedes de retirar un saldo negativo" <<endl; 
 			}else{
 				saldo[i] = saldo[i] - retirar;
@@ -92,6 +121,7 @@ void retirarSaldo()
 					cajero << "Retiraste " << retirar <<"$. De tu cuenta.";
 					cajero << "Tu saldo actual es "<< saldo[i] << "$.";
 			}
+	}
 }
 
 void ingresarPIN()//void para usuario incorrecto
@@ -138,6 +168,7 @@ void verificarSaldo()
 {
 			ofstream cajero;
 			cajero.open("cajero.txt",ios::out);
+			
 	system("color 0a");
 	
 	cout << "Su saldo es de " << saldo[i] << "$." <<endl;
@@ -183,7 +214,6 @@ system("color 0d");
 		cin >> PINentrada;
 		if(PINentrada == PIN[0]){
 		while(entrar == 1 ){ //Mantiene el programa abierto.}
-		
 		i = 0;
 		a = 1;		
 		menu();
@@ -250,12 +280,12 @@ system("color 0d");
  		cout <<endl;
         switch(opcion)
         {
-        	case 0: // opcion 0(cierra el programa).	
+       	case 9: // opcion 0(cierra el programa).	
         		salir();
         		return 0;
         	break; //Fin case 0;
         	
-            case 1: // Opcion 1(Verificar saldo). 
+            case 1: // Opcion 1(verificar saldo). 
             	verificarSaldo();               
             break;
  
@@ -263,21 +293,23 @@ system("color 0d");
 	           	retirarSaldo();          	
             break;
  
- 			case 3:// Opcion 3(depsitar).
+ 			case 3:// Opcion 3(depositar).
         		depositarSaldo();	
             break; 
             
-            case 4:// Opcion 4(Transferir).
+            case 4:// Opcion 4(transferir).
  				transferirSaldo();
             break; 
             
-            case 5: //Opcion 5(cambiar usaurio).
+            case 5: //Opcion 5(cambiar usuario).
+				system("cls");
 				return main();
             break; 
             
-            case 6: //Opcion 6(cambiar PIN).
+ 			case 6: //Opcion 6(cambiar PIN).
 				cambioPIN();
- 
+            break; 
+            
             default: //cualquier otra opcion.
 				opcionInvalida();
             break;  
@@ -317,5 +349,4 @@ system("color 0d");
 		}
 	}
  }//fin usuario.
- cajero.close();
 }//Fin main.
