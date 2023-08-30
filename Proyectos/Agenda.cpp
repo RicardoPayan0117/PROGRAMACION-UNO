@@ -2,7 +2,7 @@
 
 using namespace std;
 
-	string usuario;
+	string login, usuario = "KRLP2001", pin = "2001";
 	int opcion, entrar = 1;
 	
 void menu(){ //Muestra las opciones del programa
@@ -63,10 +63,9 @@ int main(){
 	system("color 0d");
 
 cout << "Ingrese su usario: ";
-cin  >> usuario;
+cin  >> login;
  
- 	if(usuario != "KRLP2001")
-		{
+ 	if(login !=  usuario){
 			ingresarUsuario();
 			cout << "Opcion: " <<endl;
 			cin  >> opcion;
@@ -83,7 +82,19 @@ cin  >> usuario;
 			}
 	
 		}else{
-    while(entrar == 1 ) //Mantiene el programa abierto.
+			cout << "Ingrese su PIN: ";
+			cin  >> login;
+ 
+ 			if(login != pin){		
+ 				cout <<endl;
+ 				cout << "El pin que ingreso no concuerda con el usario, ingrese nuevamente los datos." <<endl;
+ 				cout <<endl;
+ 				cout << "____________________________________________________________________________" <<endl;
+ 				cout <<endl;
+ 					
+ 				return main();
+ 			}else{
+				  while(entrar == 1 ) //Mantiene el programa abierto.
     {
         menu();  
 		
@@ -110,8 +121,9 @@ cin  >> usuario;
             default: //cualquier otra opcion.
 				opcionInvalida();
             break;  
-   		} //fin switch.
-      }// fin while_entrar.
+   	      } //fin switch.
+        }// fin while_entrar.
+	  } // Fin pin.
     }//Fin usaurio.
   }// Fin comprovacion opcion. 
 }//Fin main.
