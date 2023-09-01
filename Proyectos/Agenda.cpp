@@ -2,7 +2,6 @@
 
 using namespace std;
 
-	string login, usuario = "KRLP2001", pin = "2001";
 	int opcion, entrar = 1;
 	
 void menu(){ //Muestra las opciones del programa
@@ -38,20 +37,6 @@ void salir(){ //void opcion 0.{
 	cout <<endl;
 } //Fin salir.
 
-void ingresarUsuario(){ //void para usuario incorrecto
-system("color 0c");
-			
-			cout << endl;
-			cout << "El usaurio que ingreso no existe." <<endl;
-			cout << endl;
-			
-			cout << "Desea intentarlo otra vez:" <<endl;
-			cout <<endl;
-			cout << "1) Si." <<endl;
-			cout << "2) No." <<endl;
-			cout << endl;
-} // fin ingresar usuario.
-
 void ingresarEvento(){ //void opcion 1.
 	system("color 0a");
 	
@@ -62,40 +47,6 @@ void ingresarEvento(){ //void opcion 1.
 int main(){
 	system("color 0d");
 
-cout << "Ingrese su usario: ";
-cin  >> login;
- 
- 	if(login !=  usuario){
-			ingresarUsuario();
-			cout << "Opcion: " <<endl;
-			cin  >> opcion;
-				
-			switch(opcion) //se usa para intentar ingresar el usaurio otra vez o salir del programa.
-			{
-			case 1:
-				return main();
-			break;
-			
-			case 2:
-				return 0;
-			break;
-			}
-	
-		}else{
-			cout << "Ingrese su PIN: ";
-			cin  >> login;
- 
- 			if(login != pin){		
- 				cout <<endl;
- 				cout << "El pin que ingreso no concuerda con el usario, ingrese nuevamente los datos." <<endl;
- 				cout <<endl;
- 				cout << "____________________________________________________________________________" <<endl;
- 				cout <<endl;
- 					
- 				return main();
- 			}else{
-				  while(entrar == 1 ) //Mantiene el programa abierto.
-    {
         menu();  
 		
 		cout << "Opcion: ";
@@ -107,12 +58,11 @@ cin  >> login;
 		cin.clear();
 		fflush(stdin);
 	}else{
-        switch(opcion)
-        {
-        	case 9: // opcion 0(cierra el programa).	
+       switch(opcion){
+        	case 9: // opcion 9(cierra el programa).	
         		salir();
         		return 0;
-        	break; //Fin case 0;
+        	break; //Fin case 9;
         	
             case 1: // Opcion 1(Ingresar una tarea). 
             	ingresarEvento();               
@@ -123,7 +73,4 @@ cin  >> login;
             break;  
    	      } //fin switch.
         }// fin while_entrar.
-	  } // Fin pin.
-    }//Fin usaurio.
-  }// Fin comprovacion opcion. 
-}//Fin main.
+	}//Fin main.
