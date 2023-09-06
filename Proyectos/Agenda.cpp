@@ -1,10 +1,12 @@
 #include <iostream>
+#include <string.h>
 
 using namespace std;
 
 	int opcion;		//Lo usa el switch para elegir las opciones.
 	int entrar = 1, cimaEventos = 0; // entrar mantiene el programa abierto, cimaEventos marca un espacio libre para agendar un evento.
 	string eventos[100][5];    //Esta matris guarda los datos de los eventos(fecha, hora, lugar, nombre y descripcion).
+	char dato[100];
 	
 void menu(){ //Muestra las opciones del programa
 	system("color 0d");
@@ -23,12 +25,10 @@ void menu(){ //Muestra las opciones del programa
 } //Fin void menu 
 
  void opcionInvalida(){ //void para la opcion default.
-	system("color 0c");
-	
+
 	cout << "Opcion invalida." <<endl;
 	cout << "Ingrese una opcion valida." <<endl;
 	cout << endl;
-	
 } //Fin opcion invalida.
 
 void salir(){ //void opcion 0.{
@@ -44,7 +44,9 @@ void ingresarEvento(){ //void opcion 1.
 	system("color 0a");
 	
 	cout << "Ingrese el nombre del evento: " <<endl;
-	cin  >> eventos[cimaEventos][1];	//cin  >> Eventos[cimaEvento][1];//ingresa el dato del evento en la cima(espacio libre mas alto de la matriz)
+	cin  >> eventos[cimaEventos][1];
+	//cin.getline(dato,100,'\n');	//cin  >> Eventos[cimaEvento][1];//ingresa el dato del evento en la cima(espacio libre mas alto de la matriz)
+	//	eventos[cimaEventos][1] = dato;
 	cout << "Describe el evento: " <<endl;
 	cin  >> eventos[cimaEventos][2];
 	cout << "Ingrese el lugar del evento: " <<endl;
