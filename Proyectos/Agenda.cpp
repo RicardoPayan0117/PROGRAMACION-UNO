@@ -5,10 +5,10 @@
 
 using namespace std;
 
-	int opcion;		//Lo usa el switch para elegir las opciones.
-	int entrar = 1, cimaEventos = 0; // entrar mantiene el programa abierto, cimaEventos marca un espacio libre para agendar un evento.
-	string eventos[100][5];    //Esta matris guarda los datos de los eventos(fecha, hora, lugar, nombre y descripcion).
-	string dato;
+	int opcion;					     //Lo usa el switch para elegir las opciones.
+	int entrar = 1, cimaEventos = 0; //Entrar mantiene el programa abierto, cimaEventos marca un espacio libre para agendar un evento.
+	string eventos[100][5];    		 //Esta matriz guarda los datos de los eventos(fecha, hora, lugar, nombre y descripcion).
+	string dato;                     //Se usa paraagrregar un dato que luego se manda a la matriz.
 	
 void menu(){ //Muestra las opciones del programa
 	system("color 0d");
@@ -24,7 +24,7 @@ void menu(){ //Muestra las opciones del programa
 	cout << endl;
  	cout << "_______________________________________________________________________" <<endl;
  	cout << endl;
-} //Fin void menu 
+} //Fin menu 
 
  void opcionInvalida(){ //void para la opcion default.
 
@@ -89,15 +89,15 @@ void editarEvento(){
 	
 		if (opcion == false){ //este if compruba que el usuario este ingresando un numero y no una letra/caracter especial.
 		cout << "Debe ingresar el numero de evento." <<endl;
-		cin.clear();
-		fflush(stdin);
-		editarEvento();
+		cin.clear();    //Los use para que el programa no se cicle.
+		fflush(stdin);  //
+		editarEvento(); //Regresa a el inicio de la funcion(void).
 		
 	}else{
 		if(opcion > 0 and opcion < cimaEventos){ // Este if comprube que el numero que ingreso el usuario exista en la matriz.
-				cout << "El evento a editar es el siguiente: "<<endl;	
+				cout << "El evento a editar es el siguiente: "<<endl;	//Se usa para mostrar el evento selecionado.
 	cout << "| Evento #" << opcion << " | Nombre: " << eventos[opcion][1] << " | Descripcion: " << eventos[opcion][2]  << " |Lugar: " << eventos[opcion][3]  << " | Fecha: " << eventos[opcion][4]  << " | Hora: " << eventos[opcion][5] << " |"<<endl;  
-		
+				// aqui empieza la edicion del evento.
 		}else{
 				cout << "El numero que ingreso no existe en la matriz. "<<endl;
 				editarEvento();
@@ -115,16 +115,16 @@ int main(){
 		cin  >> opcion; //Uso opcion para entrar en los case.
  		cout <<endl;
  		
- 		if (opcion == false){
+ 		if (opcion == false){         //Comprueba que el usuario ingrese un numero.
 		cout << "Opcion invalida." <<endl;
 		cin.clear();
 		fflush(stdin);
-		return main();
-	}else{
+		return main();                 //Regresa al inicio del menu en caso de que no sea un numero.
+	}else{  //si, si es un numero entra al "else".
        switch(opcion){
         	case 9: // opcion 9(cierra el programa).	
         		salir();
-        		return 0;
+        		return 0; // Cierra el programa.
         	break; //Fin case 9;
         	
             case 1: // Opcion 1(Permite ingresar una tarea nueva). 
