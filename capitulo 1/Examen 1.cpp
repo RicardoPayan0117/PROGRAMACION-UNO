@@ -10,5 +10,7 @@ int main(){
 	cin >> numero;
 	
 	cout <<endl;
-	cout << "El doble del numero entero es : " << numero * 2 <<endl;
+	cout << "El doble del numero entero es: " << numero * 2 <<endl;
+	
+	return 0;
 }
