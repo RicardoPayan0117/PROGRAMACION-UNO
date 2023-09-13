@@ -13,23 +13,23 @@ using namespace std;
 void menu(){ //Muestra las opciones del programa
 	system("color 0d");
 	
-	cout << "_______________________________________________________________________" <<endl;
- 	cout << endl;
-	cout << "1) Ingresar un evento. " <<endl;
-	cout << "2) Editar evento. " <<endl;
-	cout << "3) Eliminar un evento. " <<endl;
-	cout << "4) Mostrar todod los eventos. " <<endl;
-	cout << endl;
-	cout << "9) Salir. " <<endl;
-	cout << endl;
- 	cout << "_______________________________________________________________________" <<endl;
- 	cout << endl;
+	cout << "_______________________________________________________________________ \n";
+ 	cout << " \n";
+	cout << "1) Ingresar un evento. \n";
+	cout << "2) Editar evento. \n";
+	cout << "3) Eliminar un evento. \n";
+	cout << "4) Mostrar todod los eventos. \n";
+	cout << " \n";
+	cout << "9) Salir.  \n";
+	cout << " \n";
+ 	cout << "_______________________________________________________________________ \n";
+	cout <<endl;
 } //Fin menu 
 
  void opcionInvalida(){ //void para la opcion default.
 
-	cout << "Opcion invalida." <<endl;
-	cout << "Ingrese una opcion valida." <<endl;
+	cout << "Opcion invalida. \n";
+	cout << "Ingrese una opcion valida. \n";
 	cout << endl;
 } //Fin opcion invalida.
 
@@ -37,7 +37,7 @@ void salir(){ //void opcion 0.{
 	system("cls");
 	system("color 0c");
 	
-   	cout <<endl;
+   	cout << " \n";
 	cout << "Gracias por usar el programa...";
 	cout <<endl;
 } //Fin salir.
@@ -75,31 +75,33 @@ void mostrarEventos() //void opcion 5.
  	system("color 0a");
  	
  	if (cimaEventos == 0){ // revisa que haya tareas para mostar.
-	cout<< "No hay eventos para mostar." <<endl;
+	cout<< "No hay eventos para mostar. \n";
 	}else{//si hay tareas imprime.
 		for(int i = 0; i < cimaEventos; i++){ //empieza desde el primer fila de la matriz hasta la cima que seria la ultima fila con eventos.  
-		cout << "| Evento #" << i << " | Nombre: " << eventos[i][1] << " | Descripcion: " << eventos[i][2]  << " |Lugar: " << eventos[i][3]  << " | Fecha: " << eventos[i][4]  << " | Hora: " << eventos[i][5] << " |"<<endl;  
+		cout << "| Evento #" << i << " | Nombre: " << eventos[i][1] << " | Descripcion: " << eventos[i][2]  
+			 << " |Lugar: " << eventos[i][3]  << " | Fecha: " << eventos[i][4]  << " | Hora: " << eventos[i][5] << " | \n";  
 		}
  	}
  }
 
 void editarEvento(){
-	cout << "Ingrese el numero de evento: " <<endl;
+	cout << "Ingrese el numero de evento:  \n";
 	cin  >> opcion;
 	
 		if (opcion == false){ //este if compruba que el usuario este ingresando un numero y no una letra/caracter especial.
-		cout << "Debe ingresar el numero de evento." <<endl;
+		cout << "Debe ingresar el numero de evento. \n";
 		cin.clear();    //Los use para que el programa no se cicle.
 		fflush(stdin);  //
 		editarEvento(); //Regresa a el inicio de la funcion(void).
 		
 	}else{
 		if(opcion > 0 and opcion < cimaEventos){ // Este if comprube que el numero que ingreso el usuario exista en la matriz.
-				cout << "El evento a editar es el siguiente: "<<endl;	//Se usa para mostrar el evento selecionado.
-	cout << "| Evento #" << opcion << " | Nombre: " << eventos[opcion][1] << " | Descripcion: " << eventos[opcion][2]  << " |Lugar: " << eventos[opcion][3]  << " | Fecha: " << eventos[opcion][4]  << " | Hora: " << eventos[opcion][5] << " |"<<endl;  
+				cout << "El evento a editar es el siguiente: \n";	//Se usa para mostrar el evento selecionado.
+	cout << "| Evento #" << opcion << " | Nombre: " << eventos[opcion][1] << " | Descripcion: " << eventos[opcion][2] 
+		 << " |Lugar: " << eventos[opcion][3]  << " | Fecha: " << eventos[opcion][4]  << " | Hora: " << eventos[opcion][5] << " | \n";  
 				// aqui empieza la edicion del evento.
 		}else{
-				cout << "El numero que ingreso no existe en la matriz. "<<endl;
+				cout << "El numero que ingreso no existe en la matriz. \n";
 				editarEvento();
 			 } //Fin comprobacion numero valido.
 		 } //Fin comprobacion numero.
@@ -113,10 +115,10 @@ int main(){
 		
 		cout << "Opcion: ";
 		cin  >> opcion; //Uso opcion para entrar en los case.
- 		cout <<endl;
+ 		cout << " \n";
  		
  		if (opcion == false){         //Comprueba que el usuario ingrese un numero.
-		cout << "Opcion invalida." <<endl;
+		cout << "Opcion invalida.  \n";
 		cin.clear();
 		fflush(stdin);
 		return main();                 //Regresa al inicio del menu en caso de que no sea un numero.
