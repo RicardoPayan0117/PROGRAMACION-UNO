@@ -4,12 +4,14 @@ using namespace std;
 
 	int filas, columnas, opcion; //opcion -> Lo usa el switch para elegir las opciones, conteo -> guarda una multiplicacion de filas*colunas.
 	int entrar = 1; //Entrar mantiene el programa abierto.
-	int matriz1[100][100]; int matriz2[100][100]; int matriz3[100][100]; //Matriz 1 y 2 se ingresan los datos iniciales, en la 3 se guarda el resultado.
+	int matriz1[100][100]; 
+	int matriz2[100][100]; 
+	int matriz3[100][100]; //Matriz 1 y 2 se ingresan los datos iniciales, en la 3 se guarda el resultado.
 	
 void menu(){ //Muestra las opciones del programa
 	system("color 0d");
 	
-	cout << "_______________________________________________________________________" <<endl;
+	cout << "_______________________________________________________________________ \n";
  	cout << " \n";
 	cout << "1) Suma de matricez. \n";
 	cout << "2) Resta de matricez. \n";
@@ -18,8 +20,8 @@ void menu(){ //Muestra las opciones del programa
 	cout << " \n";
 	cout << "9) Salir. \n";
 	cout << " \n";
- 	cout << "_______________________________________________________________________" <<endl;
- 	cout << " \n";
+ 	cout << "_______________________________________________________________________ \n";
+ 	cout << " " <<endl;
 } //Fin menu 
 
  void opcionInvalida(){ //void para la opcion default.
@@ -28,7 +30,7 @@ void menu(){ //Muestra las opciones del programa
 	cout << "Opcion invalida. \n";
 	cout << "Ingrese una opcion valida. \n";
 	system("pause");
-	cout << " \n";
+	cout << " " <<endl;
 } //Fin opcion invalida.
 
 void salir(){ //void opcion 0.{
@@ -37,7 +39,7 @@ void salir(){ //void opcion 0.{
 	
    	cout << " \n";
 	cout << "Gracias por usar el programa...";
-	cout << " \n";
+	cout << " " <<endl;
 } //Fin salir.
 
 void ingresarDatos(){
