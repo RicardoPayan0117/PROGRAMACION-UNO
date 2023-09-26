@@ -54,7 +54,7 @@ void fechaHora(){
 	cout << endl;
 } //Fin funcion invalida.
 
-void salir(){ //void opcion 0.{
+void salir(){ //funcion salir.
 	system("cls");
 	system("color 0c");
 	
@@ -78,50 +78,156 @@ void ingresarEvento(){ //void opcion 1.
 	cout << "Ingrese el lugar del evento: ";
 	getline(cin, dato); 
 		eventos[cimaEventos][3] = dato;
-		
-	cout << "Fecha del evento en numeros .  \n";
+
+} //Fin ingresar evento.
+
+void validarFecha(){ //Funcion validar fecha.
+	cout << " \n";
+	cout << "Fecha del evento en numeros.  \n";
 	cout << "Ingrese el año: ";
 	cin  >> int1;
-	if(int1 < a){
+	if(int1 < a){	//Valida que el año agregado sea de un año que no haya pasado.
 		cout << "El año que ingreso es invalido. \n";
-		return ingresarEvento();
+		return validarFecha();
 	}else{
 	cout << "Ingrese el mes: ";
 	cin  >> int2;
-		if(int1 > 0 and int1 < 12 and int1 == a and int2 <= mes){
-			cout << "El mes que a ingreso es invalido. \n";
-			return ingresarEvento();
+		if(int2 < 0 || int2 > 12){ //Valida que el mes sea valido, un numero del 1 al 12.
+			cout << "El mes que a ingreso es invalido ingrese un numero del 1 al 12. \n";
+			return validarFecha();
 		}else{
-	cout << "Ingrese el dia: ";
-	cin  >> int3;
-				if(int1 == a and int2 == mes and int3 < dia){
+			if(int1 == a && int2 < mes){ //Valida que si el año es el actual el mes no haya pasado.
+				cout << "El mes que a ingreso es invalido. \n";
+			return validarFecha();
+			}else{
+				cout << "Ingrese el dia: ";
+				cin  >> int3;
+				if(int1 == a and int2 == mes and int3 < dia){ //valida que si el año y el mes es el actual el dia no haya pasado.
 					cout << "El dia que ingreso ya paso. \n";
-					return ingresarEvento();
-				}else{			
-	fh = string1 + "/" + string2 + "/" + string3;
-	eventos[cimaEventos][4] = fh;
+					return validarFecha();
+				}else{
+				if(int2 == 1){										//estos validan que el dia que ingrese el usaurio sea valido pra el mes.
+					if(int3 < 0 || int3 > 31){
+						cout << "El dia que ingreso es invalido, enero solo tiene 31 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}else if(int2 == 2){
+					if(int3 < 0 || int3 > 28){
+						cout << "El dia que ingreso es invalido, febrero solo tiene 28 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}else if(int2 == 3){
+					if(int3 < 0 || int3 > 31){
+						cout << "El dia que ingreso es invalido, marzo solo tiene 31 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}else if(int2 == 4){
+					if(int3 < 0 || int3 > 30){
+						cout << "El dia que ingreso es invalido, abril solo tiene 30 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}else if(int2 == 5){
+					if(int3 < 0 || int3 > 31){
+						cout << "El dia que ingreso es invalido, mayo solo tiene 31 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}else if(int2 == 6){
+					if(int3 < 0 || int3 > 30){
+						cout << "El dia que ingreso es invalido, junio solo tiene 30 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}else if(int2 == 7){
+					if(int3 < 0 || int3 > 31){
+						cout << "El dia que ingreso es invalido, julio solo tiene 31 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}else if(int2 == 8){
+					if(int3 < 0 || int3 > 31){
+						cout << "El dia que ingreso es invalido, agosto solo tiene 31 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}else if(int2 == 9){
+					if(int3 < 0 || int3 > 30){
+						cout << "El dia que ingreso es invalido, septiembre solo tiene 30 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}else if(int2 == 10){
+					if(int3 < 0 || int3 > 31){
+						cout << "El dia que ingreso es invalido, octubre solo tiene 31 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}else if(int2 == 11){
+					if(int3 < 0 || int3 > 30){
+						cout << "El dia que ingreso es invalido, noviembre solo tiene 30 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}else if(int2 == 12){
+					if(int3 < 0 || int3 > 31){
+						cout << "El dia que ingreso es invalido, diciembre solo tiene 31 dias. \n";
+						return validarFecha();
+					}else{
+						
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+					}
+				}			
+					fh = to_string(int1) + "/" + to_string(int2) + "/" + to_string(int3); //comvierte la fecha ingresada en una cadena de texto.
+					eventos[cimaEventos][4] = fh;										  //guarda la cadena de texto.
+				}	
 			}
 		}	
 	}
-	cout << "Ingrese la hora del evento en formato 24hrs: ";
+} //Fin funcion validar fecha.
+
+void validarHora(){
+		cout << "Ingrese la hora del evento en formato 24hrs: ";
 	cin  >> int1;
 	if(int1 > 0 and int1 > 25 and int3 == dia and int1 >= hora){
 		cout << int1 << int2;
 	}else{
-		
-		
-	}
-	cout << "Ingrese los minutos: ";
+		cout << "Ingrese los minutos: ";
 	cin  >> int2;
 		if(int2 > 0 and int2 > 61 ){
 		}else{
 			cout << "El horario que ingreso es invalido. \n";
-			return ingresarEvento();
-		}
+			return validarHora();
+		}		
+	}
 	
 	cimaEventos++;//eleva el valor de cima en uno para apuntar al siguiente espacio libre.
-
-} //Fin ingresar evento.
+}
 
 void mostrarEventos() //void opcion 5.
  {
@@ -187,7 +293,9 @@ int main(){
         	break; //Fin case 9;
         	
             case 1: // Opcion 1(Permite ingresar una tarea nueva). 
-            	ingresarEvento();               
+            	//ingresarEvento();  
+				validarFecha(); 
+				//validarHora();            
             break;
             
             case 2: // Opcion 2(Permite editar una tarea ya existente). 
