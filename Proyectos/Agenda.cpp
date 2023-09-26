@@ -6,7 +6,8 @@
 using namespace std;
 	
 	int a, mes, dia, hora, minutos, segundos; 		//se usan para guardar la hora y fecha actual.
-	int dato1, dato2, dato3;                  		//se usan para alacenar datos de manera temporal.
+	string string1, string2, string3, fh;			//se usan para guardar los datos y creaer un acadena para almacenar ->fh.
+	int int1, int2, int3;                   		//se usan para alacenar datos de manera temporal.
 	int opcion;					     		  		//Lo usa el switch para elegir las opciones.
 	int editar = 0, entrar = 1, cimaEventos = 0; 	//Entrar mantiene el programa abierto, cimaEventos marca un espacio libre para agendar un evento.
 	string eventos[100][5];    				  		//Esta matriz guarda los datos de los eventos(fecha, hora, lugar, nombre y descripcion).
@@ -14,7 +15,7 @@ using namespace std;
 	
 void menu(){ //Muestra las opciones del programa
 	system("color 0d");
-	
+	cout << " \n";
 	cout << "_______________________________________________________________________ \n";
 	cout << a << "/" << mes << "/" << dia << " ----> " 					//imprime la fecha actual.
 		 << hora << ":" << minutos << ":" << segundos << ".\n";			//imprime la hora actual.
@@ -78,13 +79,45 @@ void ingresarEvento(){ //void opcion 1.
 	getline(cin, dato); 
 		eventos[cimaEventos][3] = dato;
 		
-	cout << "Ingrese la fecha del evento: ";
-	getline(cin, dato); 
-		eventos[cimaEventos][4] = dato;
+	cout << "Fecha del evento en numeros .  \n";
+	cout << "Ingrese el año: ";
+	cin  >> int1;
+	if(int1 < a){
+		cout << "El año que ingreso es invalido. \n";
+		return ingresarEvento();
+	}else{
+	cout << "Ingrese el mes: ";
+	cin  >> int2;
+		if(int1 > 0 and int1 < 12 and int1 == a and int2 <= mes){
+			cout << "El mes que a ingreso es invalido. \n";
+			return ingresarEvento();
+		}else{
+	cout << "Ingrese el dia: ";
+	cin  >> int3;
+				if(int1 == a and int2 == mes and int3 < dia){
+					cout << "El dia que ingreso ya paso. \n";
+					return ingresarEvento();
+				}else{			
+	fh = string1 + "/" + string2 + "/" + string3;
+	eventos[cimaEventos][4] = fh;
+			}
+		}	
+	}
+	cout << "Ingrese la hora del evento en formato 24hrs: ";
+	cin  >> int1;
+	if(int1 > 0 and int1 > 25 and int3 == dia and int1 >= hora){
+		cout << int1 << int2;
+	}else{
 		
-	cout << "Ingrese la hora del evento: ";
-	getline(cin, dato); 
-		eventos[cimaEventos][5] = dato;
+		
+	}
+	cout << "Ingrese los minutos: ";
+	cin  >> int2;
+		if(int2 > 0 and int2 > 61 ){
+		}else{
+			cout << "El horario que ingreso es invalido. \n";
+			return ingresarEvento();
+		}
 	
 	cimaEventos++;//eleva el valor de cima en uno para apuntar al siguiente espacio libre.
 
@@ -132,7 +165,7 @@ void editarEvento(){
 
 int main(){
 	system("color 0d");
-			
+		  		
 		   while(entrar == 1 ){ //Mantiene el programa abierto.
 		fechaHora();  
         menu();  
