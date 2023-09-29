@@ -25,7 +25,7 @@ void menu(){ //Muestra las opciones del programa
 	cout << "3) Eliminar un evento. \n";
 	cout << "4) Mostrar todos los eventos. \n";
 	cout << " \n";
-	cout << "9) Salir.  \n";
+	cout << "0) Salir.  \n";
 	cout << " \n";
  	cout << "_______________________________________________________________________ \n";
 	cout <<endl;
@@ -86,12 +86,24 @@ void validarFecha(){ //Funcion validar fecha.
 	cout << "Fecha del evento en numeros.  \n";
 	cout << "Ingrese el año: ";
 	cin  >> int1;
+	if (int1 == false){ 
+			cout << "Solo se aceptan numeros.  \n";
+			cin.clear();
+			fflush(stdin);
+			return validarFecha();                 //Regresa al inicio de la funcion en caso de que no sea un numero.
+	}else{  } 
 	if(int1 < a){	//Valida que el año agregado sea de un año que no haya pasado.
 		cout << "El año que ingreso es invalido. \n";
 		return validarFecha();
 	}else{
 	cout << "Ingrese el mes: ";
 	cin  >> int2;
+			if (int2 == false){ 
+			cout << "Solo se aceptan numeros.  \n";
+			cin.clear();
+			fflush(stdin);
+			return validarFecha();                 //Regresa al inicio de la funcion en caso de que no sea un numero.
+		}else{  } 
 		if(int2 < 0 || int2 > 12){ //Valida que el mes sea valido, un numero del 1 al 12.
 			cout << "El mes que a ingreso es invalido ingrese un numero del 1 al 12. \n";
 			return validarFecha();
@@ -102,6 +114,12 @@ void validarFecha(){ //Funcion validar fecha.
 			}else{
 				cout << "Ingrese el dia: ";
 				cin  >> int3;
+				if (int3 == false){ 
+					cout << "Solo se aceptan numeros.  \n";
+					cin.clear();
+					fflush(stdin);
+					return validarFecha();                 //Regresa al inicio de la funcion en caso de que no sea un numero.
+				}else{  } 
 				if(int1 == a and int2 == mes and int3 < dia){ //valida que si el año y el mes es el actual el dia no haya pasado.
 					cout << "El dia que ingreso ya paso. \n";
 					return validarFecha();
@@ -212,8 +230,14 @@ void validarFecha(){ //Funcion validar fecha.
 } //Fin funcion validar fecha.
 
 void validarHora(){
-		cout << "Ingrese la hora del evento en formato 24hrs: ";
+		cout << "Ingrese la hora del evento en formato 24hrs(solo la hora): ";
 	cin  >> int4;
+	if (int4 == false){ 
+			cout << "Solo se aceptan numeros. \n";
+			cin.clear();
+			fflush(stdin);
+			return validarHora();                 //Regresa al inicio de la funcion en caso de que no sea un numero.
+	}else{  } 
 	if(int4 < 1 || int4 > 24){
 			cout << "El horario que ingreso es invalido.1 \n";
 			return validarHora();
@@ -224,7 +248,14 @@ void validarHora(){
 		}else{
 			cout << "Ingrese los minutos: ";
 			cin  >> int5;
-			if(int5 < 1 || int5 > 60 ){
+			if (int1 == false){ 
+			cout << "Solo se aceptan numeros.  \n";
+			cin.clear();
+			fflush(stdin);
+			return validarHora();                 //Regresa al inicio de la funcion en caso de que no sea un numero.
+	}else{  
+	if( int5 == 0){
+			if(int5 < 0 || int5 > 60 ){
 				cout << "El horario que ingreso es invalido.3 \n";
 				return validarHora();
 			}else{
@@ -232,12 +263,15 @@ void validarHora(){
 					cout << "El horario que ingreso es invalido.2 \n";
 					return validarHora();
 			}else{
-				fh = to_string(int4) + ":" + to_string(int5); //comvierte la fecha ingresada en una cadena de texto.
-				eventos[cimaEventos][5] = fh;	
+				fh = to_string(int4) + ":" + to_string(int5); //comvierte la hora ingresada en una cadena de texto.
+				eventos[cimaEventos][5] = fh;				  //Guarda la cadena de texto.
 				cout << "La hora que ingreso es: " << fh <<endl;
 
 			}
-			}		
+			}
+	}else{
+	}
+	} 		
 		}
 	}
 	
@@ -295,18 +329,17 @@ int main(){
 		cout << "Opcion: ";
 		cin  >> opcion; //Uso opcion para entrar en los case.
  		cout << " \n";
- 		
  		if (opcion == false){         //Comprueba que el usuario ingrese un numero.
-		cout << "Opcion invalida.  \n";
-		cin.clear();
-		fflush(stdin);
-		return main();                 //Regresa al inicio del menu en caso de que no sea un numero.
+			cout << "Solo se aceptan numeros.  \n";
+			cin.clear();
+			fflush(stdin);
+			return main();                 //Regresa al inicio del menu en caso de que no sea un numero.
 	}else{  //si, si es un numero entra al "else".
        switch(opcion){
-        	case 9: // opcion 9(cierra el programa).	
+        	case 0: // opcion 0(cierra el programa).	
         		salir();
         		return 0; // Cierra el programa.
-        	break; //Fin case 9;
+        	break; //Fin case 0;
         	
             case 1: // Opcion 1(Permite ingresar una tarea nueva). 
             	ingresarEvento();  
