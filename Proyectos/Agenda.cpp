@@ -8,16 +8,17 @@ using namespace std;
 	int a, mes, dia, hora, minutos, segundos; 		//se usan para guardar la hora y fecha actual.
 	int int1, int2, int3, int4, int5;               //se usan para alacenar datos de manera temporal.
 	int opcion;					     		  		//Lo usa el switch para elegir las opciones.
-	int mf, mf1, add;										//se usa para cuando se necesita editar.
+	int aux, mf, mf1, add;								//se usa para cuando se necesita editar.
 	int editar = 0, entrar = 1, cimaEventos = 1; 	//Entrar mantiene el programa abierto, cimaEventos marca un espacio libre para agendar un evento.
+	int eventosMin[100];
 	string eventos[100][6];    				  		//Esta matriz guarda los datos de los eventos(fecha, hora, lugar, nombre y descripcion).
 	string fh;										//se usan para guardar los datos y creaer un acadena para almacenar ->fh.
 	string dato;                     		  		//Se usa paragregar un dato que luego se manda a la matriz.
 	
 void menu(){ //Muestra las opciones del programa
-	system("color 0d");
+	system("color 0d"); //Color morado.
 	cout << " \n";
-	cout << "_______________________________________________________________________ \n";
+	cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";
 	cout << a << "/" << mes << "/" << dia << " ----> " 					//imprime la fecha actual.
 		 << hora << ":" << minutos << ":" << segundos << ".\n";			//imprime la hora actual.
  	cout << " \n";
@@ -25,11 +26,11 @@ void menu(){ //Muestra las opciones del programa
 	cout << "2) Editar evento. \n";
 	cout << "3) Eliminar un evento. \n";
 	cout << "4) Mostrar todos los eventos. \n";
+	cout << "5) Mostrar los eventos de la semana. \n";
 	cout << " \n";
 	cout << "9) Salir.  \n";
 	cout << " \n";
- 	cout << "_______________________________________________________________________ \n";
-	cout <<endl;
+	cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";	cout <<endl;
 } //Fin funcion menu.
 
 void fechaHora(){
@@ -57,7 +58,7 @@ void fechaHora(){
 
 void salir(){ //funcion salir.
 	system("cls");
-	system("color 0c");
+	system("color 0c"); //Color rojo.
 	
    	cout << " \n";
 	cout << "Gracias por usar el programa...";
@@ -88,6 +89,7 @@ void ingresarEvento(){ //void opcion 1.
 } //Fin ingresar evento.
 
 void validarFecha(){ //Funcion validar fecha.
+	system("color 0a");
 	cout << " \n";
 	cout << "Fecha del evento en numeros.  \n";
 	cout << "Ingrese el año: ";
@@ -223,8 +225,6 @@ void validarFecha(){ //Funcion validar fecha.
 						cout << "El dia que ingreso es invalido, diciembre solo tiene 31 dias. \n";
 						return validarFecha();
 					}else{
-						
-						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
 					}
 				}			
 					fh = to_string(int1) + "/" + to_string(int2) + "/" + to_string(int3); //comvierte la fecha ingresada en una cadena de texto.
@@ -236,6 +236,7 @@ void validarFecha(){ //Funcion validar fecha.
 } //Fin funcion validar fecha.
 
 void validarHora(){
+	system("color 0a");
 		cout << "Ingrese la hora del evento en formato 24hrs(solo la hora): ";
 	cin  >> int4;
 	if (int4 == false){ 
@@ -286,9 +287,7 @@ void validarHora(){
 					return validarHora();
 			}else{
 				fh = to_string(int4) + ":" + to_string(int5); //comvierte la hora ingresada en una cadena de texto.
-				eventos[add][5] = fh;				  //Guarda la cadena de texto.
-				cout << "La hora que ingreso es: " << fh <<endl;
-
+				eventos[add][5] = fh;						  //Guarda la cadena de texto.
 			  }
 			 }
 			} 		
@@ -297,25 +296,35 @@ void validarHora(){
 	if(editar == 0){  //cuando se usa la opcion editar no se necesita aumentar la cima.
 		cimaEventos++;//eleva el valor de cima en uno para apuntar al siguiente espacio libre.
 	}else{	}
+		cout << "El evento se a agregado correctamente. \n";
+				system("pause");
+					system("cls");
 }
 
-void mostrarEventos() //void opcion 5.
- {
- 	system("color 0a");
+void mostrarEventos() { //Funcion opcion 4, muestra todos los eventos.
+ 	system("color 0a"); // Color verde;
  	
  	if (cimaEventos == 0){ // revisa que haya tareas para mostar.
- 		system("cls");
 		system("color 0c");
 	cout<< "No hay eventos para mostar. \n";
 			system("pause");
 	}else{//si hay tareas imprime.
+		cout << " \n";
+		cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";		
 		for(int i = 1; i < cimaEventos; i++){ //empieza desde el primer fila de la matriz hasta la cima que seria la ultima fila con eventos.  
-		cout << "| Evento #" << i << " | Nombre: " << eventos[i][1] << " | Descripcion: " << eventos[i][2]  
-			 << " |Lugar: " << eventos[i][3]  << " | Fecha: " << eventos[i][4]  << " | Hora: " << eventos[i][5] 
-			 << " | Minutos restantes: " << eventos[i][6] << " | \n";  
+		cout << "Evento #" << i << " \n"
+		 	 << "Nombre: " << eventos[i][1] << " \n"
+			 << "Descripcion: " << eventos[i][2]  
+			 << "Lugar: " << eventos[i][3] << " \n"
+			 << "Fecha: " << eventos[i][4] << " \n" 
+			 << "Hora: " << eventos[i][5]  << " \n";  
 		}
+		cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";		
+		cout << " \n";
  	}
- }
+			system("pause");
+					system("cls");
+ } //Fin funcion 4.
 
 void editarEvento(){
 	cout << "Ingrese el numero de evento:  \n";
@@ -326,12 +335,15 @@ void editarEvento(){
 		cin.clear();    //Los use para que el programa no se cicle.
 		fflush(stdin);  //
 		editarEvento(); //Regresa a el inicio de la funcion(void).
-		
 	}else{
 		if(opcion >= 0 and opcion < cimaEventos){ // Este if comprube que el numero que ingreso el usuario exista en la matriz.
 			cout << "El evento a editar es el siguiente: \n";	//Se usa para mostrar el evento selecionado.
-			cout << "| Evento #" << opcion << " | Nombre: " << eventos[opcion][1] << " | Descripcion: " << eventos[opcion][2] 
-				 << " |Lugar: " << eventos[opcion][3]  << " | Fecha: " << eventos[opcion][4]  << " | Hora: " << eventos[opcion][5] << " | \n";
+			cout << "Evento #" << opcion << ". \n"
+				 << "Nombre: " << eventos[opcion][1] << ". \n"
+				 << "Descripcion: " << eventos[opcion][2] << ". \n"
+				 << "Lugar: " << eventos[opcion][3] << ". \n"
+				 << "Fecha: " << eventos[opcion][4] << ". \n"
+				 << "Hora: " << eventos[opcion][5] << ". \n";
 				// aqui empieza la edicion del evento.
 				editar = 1;
 				ingresarEvento();
@@ -407,21 +419,76 @@ void calcularMinutos(){ //Este voidcalcula los minutos que faltan para que se re
 		mf += ((int4 - hora) * 60);
 		mf += (int5 - minutos);
 		
+		eventosMin[add] = mf;
 		fh = to_string(mf) + " min." ;
 		eventos[add][6] = fh; 
 	}else{
 		mf = 525600;
-		
+
+		eventosMin[add] = mf;
 		fh = "+" + to_string(mf) + " min." ;
 		eventos[add][6] = fh; 
 	}
 } //Fin void editar.
 
+void eventosSemana(){ //Esta funcion imprime los eventos que van a ocurrir en la semana.
+	if (cimaEventos <= 1){ // revisa que haya tareas para mostar.
+ 		system("cls");
+ 				system("color 0c");
+	cout<< "No hay eventos para mostar. \n";
+	}else{//si hay tareas imprime.
+/*	for(int i=0; i < cimaEventos; i++){
+		for(int j=0; j < cimaEventos; j++){
+			if(eventosMin[j] > eventosMin[j+1]){
+				aux = eventosMin[j];
+				eventosMin[j] = eventosMin[j+1];
+				eventosMin[j+1] = aux;
+			}
+		}
+	} */
+		system("color 0a");
+	cout << " \n";
+	cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";				 			 
+	cout << "Nota 1440min son un dia. poner dias horas min \n";	
+		for(int i = 1; i < cimaEventos; i++){ //empieza desde el primer fila de la matriz hasta la cima que seria la ultima fila con eventos. 
+			if(eventosMin[i] < 10800){
+				cout << "Evento #" << i << ". \n"
+					 << "Nombre: " << ". \n"
+					 << eventos[i][1] << ". \n"
+					 << "Descripcion: " << eventos[i][2] << ". \n"  
+				 	 << "Lugar: " << eventos[i][3]  << ". \n"
+					 << "Fecha: " << eventos[i][4]  << ". \n"
+					 << "Hora: " << eventos[i][5] 
+			 	   	 << "Minutos restantes: " << eventos[i][6] << ". \n";  
+			}else{} 
+		}
+ 	}
+					system("pause");
+					system("cls");
+} //Fin funcion eventosSemana.
+
+void eliminarEvento(){ //
+	
+	cout << "Ingrese el numero de evento:  \n";
+	cin  >> opcion;
+	
+	if(opcion == false){ //este if compruba que el usuario este ingresando un numero y no una letra/caracter especial.
+		cout << "Debe ingresar el numero de evento. \n";
+		cin.clear();    //Los use para que el programa no se cicle.
+		fflush(stdin);  //
+		editarEvento(); //Regresa a el inicio de la funcion(void).
+		
+	}else{
+	
+	}
+	
+} // Fin funcion eliminar evento.
+
 int main(){
 	system("color 0d");
-		  		
+		  	eventosSemana(); 	
 		   while(entrar == 1 ){ //Mantiene el programa abierto.
-		fechaHora();  
+		fechaHora(); 
         menu();  
 		
 		cout << "Opcion: ";
@@ -447,11 +514,20 @@ int main(){
             break;
             
             case 2: // Opcion 2(Permite editar una tarea ya existente). 
-            	editarEvento();               
+            	editarEvento();
+				calcularMinutos();               
             break;
             
-             case 4: // Opcion 4(Mostrar todos los eventos). 
+             case 3: // Opcion 3(Eliminar evento). 
+            	eliminarEvento();               
+            break;
+            
+            case 4: // Opcion 4(Mostrar todos los eventos). 
             	mostrarEventos();               
+            break;
+            
+			case 5: // Opcion 5(Mostrar todos los eventos de la semana). 
+            	eventosSemana();             
             break;
             
             default: //cualquier otra opcion.
