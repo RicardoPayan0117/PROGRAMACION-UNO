@@ -8,13 +8,11 @@ using namespace std;
 	int a, mes, dia, hora, minutos, segundos; 		//se usan para guardar la hora y fecha actual.
 	int int1, int2, int3, int4, int5;               //se usan para alacenar datos de manera temporal.
 	int opcion;					     		  		//Lo usa el switch para elegir las opciones.
-	int aux, mf, mf1, add;								//se usa para cuando se necesita editar.
+	int aux, mf, mf1, mf3, add;								//se usa para cuando se necesita editar, mf= minutos faltantes y se usan al calcular minutos.
 	int editar = 0, entrar = 1, cimaEventos = 1; 	//Entrar mantiene el programa abierto, cimaEventos marca un espacio libre para agendar un evento.
 	int eventosMin[100];
-	string eventos[100][6];    				  		//Esta matriz guarda los datos de los eventos(fecha, hora, lugar, nombre y descripcion).
-	string fh;										//se usan para guardar los datos y creaer un acadena para almacenar ->fh.
-	string dato;                     		  		//Se usa paragregar un dato que luego se manda a la matriz.
-	
+	string eventos[100][5];    				  		//Esta matriz guarda los datos de los eventos(fecha, hora, lugar, nombre y descripcion).
+	string fh, dato;								//se usan para guardar los datos y creaer un acadena para almacenar ->fh. Se usa paragregar un dato que luego se manda a la matriz -> dato.   					        		   		
 void menu(){ //Muestra las opciones del programa
 	system("color 0d"); //Color morado.
 	cout << " \n";
@@ -50,9 +48,10 @@ void fechaHora(){
 }//Fin funcion fechaHora.
 
  void opcionInvalida(){ //void para la opcion default.
-
+	system("cls");
+	system("color 0c"); //Color rojo.
 	cout << "Opcion invalida. \n";
-	cout << "Ingrese una opcion valida. \n";
+	system("pause");
 	cout << endl;
 } //Fin funcion invalida.
 
@@ -137,87 +136,85 @@ void validarFecha(){ //Funcion validar fecha.
 						cout << "El dia que ingreso es invalido, enero solo tiene 31 dias. \n";
 						return validarFecha();
 					}else{
-						
 						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
 					}
 				}else if(int2 == 2){
-					if(int3 < 1 || int3 > 28){
+					if(int1 % 4 == 0){
+						if(int3 < 1 || int3 > 29){
+						cout << "El dia que ingreso es invalido, como es año biciesto febrero solo tiene 29 dias. \n";
+						return validarFecha();
+						}else{
+						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+						}
+					}else{
+						if(int3 < 1 || int3 > 28){
 						cout << "El dia que ingreso es invalido, febrero solo tiene 28 dias. \n";
 						return validarFecha();
-					}else{
-						
+						}else{
 						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
+						}
 					}
 				}else if(int2 == 3){
 					if(int3 < 1 || int3 > 31){
 						cout << "El dia que ingreso es invalido, marzo solo tiene 31 dias. \n";
 						return validarFecha();
-					}else{
-						
+					}else{	
 						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
 					}
 				}else if(int2 == 4){
 					if(int3 < 1 || int3 > 30){
 						cout << "El dia que ingreso es invalido, abril solo tiene 30 dias. \n";
 						return validarFecha();
-					}else{
-						
+					}else{						
 						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
 					}
 				}else if(int2 == 5){
 					if(int3 < 1 || int3 > 31){
 						cout << "El dia que ingreso es invalido, mayo solo tiene 31 dias. \n";
 						return validarFecha();
-					}else{
-						
+					}else{						
 						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
 					}
 				}else if(int2 == 6){
 					if(int3 < 1 || int3 > 30){
 						cout << "El dia que ingreso es invalido, junio solo tiene 30 dias. \n";
 						return validarFecha();
-					}else{
-						
+					}else{						
 						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
 					}
 				}else if(int2 == 7){
 					if(int3 < 1 || int3 > 31){
 						cout << "El dia que ingreso es invalido, julio solo tiene 31 dias. \n";
 						return validarFecha();
-					}else{
-						
+					}else{						
 						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
 					}
 				}else if(int2 == 8){
 					if(int3 < 1 || int3 > 31){
 						cout << "El dia que ingreso es invalido, agosto solo tiene 31 dias. \n";
 						return validarFecha();
-					}else{
-						
+					}else{						
 						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
 					}
 				}else if(int2 == 9){
 					if(int3 < 1 || int3 > 30){
 						cout << "El dia que ingreso es invalido, septiembre solo tiene 30 dias. \n";
 						return validarFecha();
-					}else{
-						
+					}else{					
 						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
 					}
 				}else if(int2 == 10){
 					if(int3 < 1 || int3 > 31){
 						cout << "El dia que ingreso es invalido, octubre solo tiene 31 dias. \n";
 						return validarFecha();
-					}else{
-						
+					}else{						
 						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
 					}
 				}else if(int2 == 11){
 					if(int3 < 1 || int3 > 30){
 						cout << "El dia que ingreso es invalido, noviembre solo tiene 30 dias. \n";
 						return validarFecha();
-					}else{
-						
+					}else{						
 						cout << "La fecha que ingreso es: " << int1 << "/" << int2 << "/" << int3 <<endl;
 					}
 				}else if(int2 == 12){
@@ -245,7 +242,7 @@ void validarHora(){
 			fflush(stdin);
 			return validarHora();                 //Regresa al inicio de la funcion en caso de que no sea un numero.
 	}else{  } 
-	if(int4 < 1 || int4 > 24){
+	if(int4 < 0 || int4 > 23){
 			cout << "El horario que ingreso es invalido.1 \n";
 			return validarHora();
 	}else{	
@@ -257,18 +254,17 @@ void validarHora(){
 			cin  >> int5;
 			if (int5 == false){ 
 				if(int5 == 0){
-								if(int5 < 0 || int5 > 60 ){
-				cout << "El horario que ingreso es invalido.3 \n";
-				return validarHora();
-			}else{
-				if(int1 == a and int2 == mes and int3 == dia and int4 == hora and int5 < minutos){
+					if(int5 < 0 || int5 > 59 ){
+						cout << "El horario que ingreso es invalido.3 \n";
+						return validarHora();
+				}else{
+			if(int1 == a and int2 == mes and int3 == dia and int4 == hora and int5 < minutos){
 					cout << "El horario que ingreso es invalido.2 \n";
 					return validarHora();
 			}else{
 				fh = to_string(int4) + ":" + to_string(int5); //comvierte la hora ingresada en una cadena de texto.
 				eventos[add][5] = fh;				  //Guarda la cadena de texto.
 				cout << "La hora que ingreso es: " << fh <<endl;
-
 			  }
 			 }
 				}else{
@@ -278,7 +274,7 @@ void validarHora(){
 					return validarHora();                 //Regresa al inicio de la funcion en caso de que no sea un numero.
 				}
 			}else{  
-			if(int5 < 0 || int5 > 60 ){
+			if(int5 < 0 || int5 > 59 ){
 				cout << "El horario que ingreso es invalido.3 \n";
 				return validarHora();
 			}else{
@@ -304,11 +300,12 @@ void validarHora(){
 void mostrarEventos() { //Funcion opcion 4, muestra todos los eventos.
  	system("color 0a"); // Color verde;
  	
- 	if (cimaEventos == 0){ // revisa que haya tareas para mostar.
+ 	if (cimaEventos == 1){ // revisa que haya tareas para mostar.
 		system("color 0c");
 	cout<< "No hay eventos para mostar. \n";
 			system("pause");
 	}else{//si hay tareas imprime.
+		system("cls");
 		cout << " \n";
 		cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";		
 		for(int i = 1; i < cimaEventos; i++){ //empieza desde el primer fila de la matriz hasta la cima que seria la ultima fila con eventos.  
@@ -317,16 +314,25 @@ void mostrarEventos() { //Funcion opcion 4, muestra todos los eventos.
 			 << "Descripcion: " << eventos[i][2]  
 			 << "Lugar: " << eventos[i][3] << " \n"
 			 << "Fecha: " << eventos[i][4] << " \n" 
-			 << "Hora: " << eventos[i][5]  << " \n";  
+			 << "Hora: " << eventos[i][5]  << " \n"
+			 << " \n";   
 		}
 		cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";		
 		cout << " \n";
+		system("pause");
  	}
-			system("pause");
 					system("cls");
  } //Fin funcion 4.
 
 void editarEvento(){
+		system("color 0a"); // Color verde;
+	
+	if (cimaEventos == 1){ // revisa que haya eventos para editar.
+		system("color 0c");
+	cout<< "No hay eventos para eliminar. \n";
+			system("pause");
+				system("cls");
+	}else{
 	cout << "Ingrese el numero de evento:  \n";
 	cin  >> opcion;
 	
@@ -355,19 +361,16 @@ void editarEvento(){
 				editarEvento();
 			 } //Fin comprobacion numero valido.
 		 } //Fin comprobacion numero.
+	}
 } //Fin void editarEvento;
 
 void calcularMinutos(){ //Este voidcalcula los minutos que faltan para que se realize una tarea
-						//Se usa para que las tares proximas a suceder 
-	if(int1 == a){
-		opcion = (int2 - mes); //Dias por mes 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31;
-		if(int2 == 1){
-			mf = 1 + int3;
-		}else if(int2 == 2){
+	
+		if(int2 == 1){			//meses del año enero, febrero, etc;
+			mf = 1 + int3;		//Dias por mes 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31;
+		}else if(int2 == 2){	//los ba sumando segun el mes que ingreso el usaurimo;
 			mf = 32 + int3;
 		}else if(int2 == 3){
-			mf = 60 + int3;
-		}else if(int2 == 4){
 			mf = 91 + int3;
 		}else if(int2 == 5){
 			mf = 121 + int3;
@@ -388,7 +391,7 @@ void calcularMinutos(){ //Este voidcalcula los minutos que faltan para que se re
 		}else{
 			cout << "ERROR." <<endl;
 		}
-			if(mes == 1){
+			if(mes == 1){				//hace lo mismo que el de arriba solo que suma los mese de la fecha actual.
 			mf1 = 1 + dia;
 		}else if(mes == 2){
 			mf1 = 32 + dia;
@@ -415,20 +418,22 @@ void calcularMinutos(){ //Este voidcalcula los minutos que faltan para que se re
 		}else{
 			cout << "ERROR." <<endl;
 		}
-		mf =  ((mf - mf1)*(24)*(60));
-		mf += ((int4 - hora) * 60);
-		mf += (int5 - minutos);
+			if(int1 % 4 == 0){ //Comprueba que el año sea biciesto dividiendo entre 4 y comparando el residuo es 0;
+				if(opcion >= 2){	//Si el residuo es sero revisa que la fecha imgresada sea igual a febrero.
+					mf += 1; //Si si es entonces ese el año de comparacion tendra un dia mas.
+				}else{}
+			}else{}
 		
-		eventosMin[add] = mf;
-		fh = to_string(mf) + " min." ;
-		eventos[add][6] = fh; 
-	}else{
-		mf = 525600;
-
-		eventosMin[add] = mf;
-		fh = "+" + to_string(mf) + " min." ;
-		eventos[add][6] = fh; 
-	}
+		if(int1 > a){ //Calcula los dias segun la cantidad de años.
+			mf3 = int1 - a;
+			mf3 += mf3 * 365;  //Calcula la cantidad de dias faltantes segun los años; 
+		}else{}		
+		
+		mf =  ((mf3+(mf - mf1))*(24)*(60));	//Segun los meses saca la cantidad de dias y le suma los dias de los años y los comvierte en minutos.
+		mf += ((int4 - hora) * 60);    	//saca la cantidad de horas y las hace minutos.
+		mf += (int5 - minutos); 		//suma los minutos.
+		
+		eventosMin[add] = mf;				
 } //Fin void editar.
 
 void eventosSemana(){ //Esta funcion imprime los eventos que van a ocurrir en la semana.
@@ -437,29 +442,22 @@ void eventosSemana(){ //Esta funcion imprime los eventos que van a ocurrir en la
  				system("color 0c");
 	cout<< "No hay eventos para mostar. \n";
 	}else{//si hay tareas imprime.
-/*	for(int i=0; i < cimaEventos; i++){
-		for(int j=0; j < cimaEventos; j++){
-			if(eventosMin[j] > eventosMin[j+1]){
-				aux = eventosMin[j];
-				eventosMin[j] = eventosMin[j+1];
-				eventosMin[j+1] = aux;
-			}
-		}
-	} */
 		system("color 0a");
+		system("cls");
 	cout << " \n";
 	cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";				 			 
-	cout << "Nota 1440min son un dia. poner dias horas min \n";	
 		for(int i = 1; i < cimaEventos; i++){ //empieza desde el primer fila de la matriz hasta la cima que seria la ultima fila con eventos. 
 			if(eventosMin[i] < 10800){
-				cout << "Evento #" << i << ". \n"
-					 << "Nombre: " << ". \n"
-					 << eventos[i][1] << ". \n"
-					 << "Descripcion: " << eventos[i][2] << ". \n"  
-				 	 << "Lugar: " << eventos[i][3]  << ". \n"
-					 << "Fecha: " << eventos[i][4]  << ". \n"
-					 << "Hora: " << eventos[i][5] 
-			 	   	 << "Minutos restantes: " << eventos[i][6] << ". \n";  
+				cout << "Evento #" 			<< i << ". \n"
+					 << "Nombre: " 			<< eventos[i][1] << ". \n"
+					 << "Descripcion: "	 	<< eventos[i][2] << ". \n"  
+				 	 << "Lugar: " 			<< eventos[i][3] << ". \n"
+					 << "Fecha: " 			<< eventos[i][4] << ". \n"
+					 << "Hora: " 			<< eventos[i][5] <<". \n"
+			 	   	 << "Tiempo restante: " << (eventosMin[i] / 60) / 24 << " dia(s) y " << (eventosMin[i] / 60) % 24 <<" hora(s) y " 
+						 					<< eventosMin[i] % 60 << " minuto(s). \n"
+					 << ". \n";  
+	cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";				 			 
 			}else{} 
 		}
  	}
@@ -467,11 +465,15 @@ void eventosSemana(){ //Esta funcion imprime los eventos que van a ocurrir en la
 					system("cls");
 } //Fin funcion eventosSemana.
 
-void eliminarEvento(){ //
+void eliminarEvento(){ //Funcion eliminar evento.
+ 	system("color 0a"); // Color verde;
 	
-	cout << "Ingrese el numero de evento:  \n";
-	cin  >> opcion;
-	
+	if (cimaEventos == 1){ // revisa que haya tareas para mostar.
+		system("color 0c");
+	cout<< "No hay eventos para eliminar. \n";
+			system("pause");
+					system("cls");
+	}else{//si hay tareas imprime.	
 	if(opcion == false){ //este if compruba que el usuario este ingresando un numero y no una letra/caracter especial.
 		cout << "Debe ingresar el numero de evento. \n";
 		cin.clear();    //Los use para que el programa no se cicle.
@@ -479,15 +481,48 @@ void eliminarEvento(){ //
 		editarEvento(); //Regresa a el inicio de la funcion(void).
 		
 	}else{
-	
+		if(opcion >= 0 and opcion < cimaEventos){ // Este if comprube que el numero que ingreso el usuario exista en la matriz.
+			cout << "El evento a eliminar es el siguiente: \n";	//Se usa para mostrar el evento selecionado.
+			cout << "Evento #" << opcion << ". \n"
+				 << "Nombre: " << eventos[opcion][1] << ". \n"
+				 << "Descripcion: " << eventos[opcion][2] << ". \n"
+				 << "Lugar: " << eventos[opcion][3] << ". \n"
+				 << "Fecha: " << eventos[opcion][4] << ". \n"
+				 << "Hora: " << eventos[opcion][5] << ". \n";
+				 
+					system("color 0c"); //Color rojo.
+					
+				 cout << "¿Desea eliminar el evento?(S/N) ";
+				 cin  >> aux;
+				 if(aux == 1 ){ //este if compruba que el usuario este ingresando S.
+					for(int i = opcion; i < cimaEventos; i++){
+						aux = opcion + 1;		//aux siempre vale uno mas que opcion;
+						eventos[opcion][1] = eventos[aux][1];  //Guarda los datos del evento superior(aux) en la pocision inferior(opcion).	
+						eventos[opcion][2] = eventos[aux][2];	
+						eventos[opcion][3] = eventos[aux][3];
+						eventos[opcion][4] = eventos[aux][4];
+						eventos[opcion][5] = eventos[aux][5]; 
+						eventosMin[opcion] = eventosMin[aux];  //...
+					}
+					cimaEventos--; //Reduce la cima para borrar el ultimo elemento que queda repetido
+				 }else if(aux == 2){
+				 	 cout << "El evento no se eliminara. ";
+				 }else{
+				 	cout << "A ingresado una opcion invalida. ";
+				 	eliminarEvento();
+				 }
+		}else{
+				cout << "El ID de evento que ingreso no existe. \n";
+				eliminarEvento();
+			 } //Fin comprobacion numero valido.
+		 } //Fin comprobacion numero.
+	system("pause");
+	system("cls");
 	}
-	
 } // Fin funcion eliminar evento.
 
 int main(){
 	system("color 0d");
-		  	eventosSemana(); 	
-		   while(entrar == 1 ){ //Mantiene el programa abierto.
 		fechaHora(); 
         menu();  
 		
@@ -495,7 +530,10 @@ int main(){
 		cin  >> opcion; //Uso opcion para entrar en los case.
  		cout << " \n";
  		if (opcion == false){         //Comprueba que el usuario ingrese un numero.
+ 			system("cls");
+	system("color 0c"); //Color rojo.
 			cout << "Solo se aceptan numeros.  \n";
+			system("pause");
 			cin.clear();
 			fflush(stdin);
 			return main();                 //Regresa al inicio del menu en caso de que no sea un numero.
@@ -510,31 +548,36 @@ int main(){
             	ingresarEvento();  
 				validarFecha(); 
 				validarHora();  
-				calcularMinutos();          
+				calcularMinutos();   
+						return main();       
             break;
             
             case 2: // Opcion 2(Permite editar una tarea ya existente). 
             	editarEvento();
-				calcularMinutos();               
+				calcularMinutos();
+					return main();               
             break;
             
              case 3: // Opcion 3(Eliminar evento). 
-            	eliminarEvento();               
+            	eliminarEvento(); 
+					return main();             
             break;
             
             case 4: // Opcion 4(Mostrar todos los eventos). 
-            	mostrarEventos();               
+            	mostrarEventos();  
+					return main();             
             break;
             
 			case 5: // Opcion 5(Mostrar todos los eventos de la semana). 
-            	eventosSemana();             
+            	eventosSemana();  
+					return main();           
             break;
             
             default: //cualquier otra opcion.
 				opcionInvalida();
+				return main();
             break;  
             
    	      }//fin switch.
         }// else validacion.
-      }// Fin while entrar.
 	}//Fin main.
