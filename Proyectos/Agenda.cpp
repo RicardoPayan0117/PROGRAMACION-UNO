@@ -9,7 +9,7 @@ using namespace std;
 	int int1, int2, int3, int4, int5;               //se usan para alacenar datos de manera temporal.
 	int opcion;					     		  		//Lo usa el switch para elegir las opciones.
 	int aux, mf, mf1, mf3, add;								//se usa para cuando se necesita editar, mf= minutos faltantes y se usan al calcular minutos.
-	int editar = 0, entrar = 1, cimaEventos = 1; 	//Entrar mantiene el programa abierto, cimaEventos marca un espacio libre para agendar un evento.
+	int editar = 0, cimaEventos = 1; 				//CimaEventos marca un espacio libre para agendar un evento.
 	int eventosMin[100];
 	string eventos[100][5];    				  		//Esta matriz guarda los datos de los eventos(fecha, hora, lugar, nombre y descripcion).
 	string fh, dato;								//se usan para guardar los datos y creaer un acadena para almacenar ->fh. Se usa paragregar un dato que luego se manda a la matriz -> dato.   					        		   		
