@@ -3,7 +3,6 @@
 using namespace std;
 
 	int filas, columnas, opcion; //opcion -> Lo usa el switch para elegir las opciones, conteo -> guarda una multiplicacion de filas*colunas.
-	int entrar = 1; //Entrar mantiene el programa abierto.
 	int matriz1[100][100]; 
 	int matriz2[100][100]; 
 	int matriz3[100][100]; //Matriz 1 y 2 se ingresan los datos iniciales, en la 3 se guarda el resultado.
@@ -103,8 +102,7 @@ void imprimirMatriz(){
 
 int main(){
 	system("color 0d");
-		
-		   while(entrar == 1 ){ //Mantiene el programa abierto.
+
         menu();  
 		
 		cout << "Opcion: ";
@@ -142,6 +140,10 @@ int main(){
     			cout << "Resultado de la suma: \n";	
 				imprimirMatriz();
 				cout << " \n";
+				
+				system("pause");
+    			system("cls"); 	
+    			return main();
         	break; //Fin case 1;
         	
         	case 2: // opcion 2(resta dos matrices y lo muestra).
@@ -158,6 +160,10 @@ int main(){
     			cout << "Resultado de la resta: \n";	
 				imprimirMatriz();
 				cout << " \n";
+				
+				system("pause");
+    			system("cls"); 	
+    			return main();
         	break; //Fin case 2;
         	
         	case 3: // opcion 3(multiplica dos matrices y lo muestra).
@@ -173,7 +179,12 @@ int main(){
     			cout << " \n";	
     			cout << "Resultado de la multiplicacion: \n";	
 				imprimirMatriz();
-				cout << " \n";
+				cout << " \n";		
+				
+				system("pause");
+    			system("cls"); 	
+    			return main();
+				
         	break; //Fin case 3;
         	
         	case 4: // opcion 4(divide dos matrices y lo muestra).
@@ -182,11 +193,9 @@ int main(){
     					for (int j = 0; j < filas; j++) {
     						if (matriz2[i][j] == 0) {
     							system("cls");
-    							//inserta el mensaje que gustes atte minmin
-    							cout<<"como estas pendejo, no puedes dividir entre 0\n";
-    							system("pause");
-    							system("cls"); 	
-    							break;
+    							cout<<"No puedes dividir entre 0. \n";
+    							system("pause"); 	
+    							return main();
 								}
     						cout << "F" << i << ", C" << j << " -> " << "M1: " 
 								 << matriz1[i][j] << " / " << "M2: " << matriz2[i][j] << " = " << matriz1[i][j]/matriz2[i][j] << " \n";
@@ -198,6 +207,10 @@ int main(){
     			cout << "Resultado de la division: \n";	
 				imprimirMatriz();
 				cout << " \n";
+				
+				system("pause");
+    			system("cls"); 	
+    			return main();
         	break; //Fin case 4;	
         	
             default: //cualquier otra opcion.
@@ -206,5 +219,4 @@ int main(){
             
    	      }//fin switch.
         }// else validacion.
-      }// Fin while entrar.
 	}//Fin main.

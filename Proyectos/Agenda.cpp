@@ -8,11 +8,12 @@ using namespace std;
 	int a, mes, dia, hora, minutos, segundos; 		//se usan para guardar la hora y fecha actual.
 	int int1, int2, int3, int4, int5;               //se usan para alacenar datos de manera temporal.
 	int opcion;					     		  		//Lo usa el switch para elegir las opciones.
-	int aux, mf, mf1, mf3, add;								//se usa para cuando se necesita editar, mf= minutos faltantes y se usan al calcular minutos.
+	int aux, mf, mf1, mf3, add;						//se usa para cuando se necesita editar, mf= minutos faltantes y se usan al calcular minutos.
 	int editar = 0, cimaEventos = 1; 				//CimaEventos marca un espacio libre para agendar un evento.
 	int eventosMin[100];
 	string eventos[100][5];    				  		//Esta matriz guarda los datos de los eventos(fecha, hora, lugar, nombre y descripcion).
-	string fh, dato;								//se usan para guardar los datos y creaer un acadena para almacenar ->fh. Se usa paragregar un dato que luego se manda a la matriz -> dato.   					        		   		
+	string fh, dato;
+									//se usan para guardar los datos y creaer un acadena para almacenar ->fh. Se usa paragregar un dato que luego se manda a la matriz -> dato.   					        		   		
 void menu(){ //Muestra las opciones del programa
 	system("color 0d"); //Color morado.
 	cout << " \n";
@@ -468,7 +469,7 @@ void eventosSemana(){ //Esta funcion imprime los eventos que van a ocurrir en la
 void eliminarEvento(){ //Funcion eliminar evento.
  	system("color 0a"); // Color verde;
 	
-	if (cimaEventos == 1){ // revisa que haya tareas para mostar.
+	if (cimaEventos == 1){ // revisa que haya tareas para eliminar.
 		system("color 0c");
 	cout<< "No hay eventos para eliminar. \n";
 			system("pause");
