@@ -2,7 +2,7 @@
 
 using namespace std;
 
-	int filas, columnas, opcion; //opcion -> Lo usa el switch para elegir las opciones, conteo -> guarda una multiplicacion de filas*colunas.
+	int filas, columnas, fila, columna, opcion; //opcion -> Lo usa el switch para elegir las opciones, conteo -> guarda una multiplicacion de filas*colunas.
 	int matriz1[100][100]; 
 	int matriz2[100][100]; 
 	int matriz3[100][100]; //Matriz 1 y 2 se ingresan los datos iniciales, en la 3 se guarda el resultado.
@@ -91,6 +91,86 @@ void ingresarDatos(){
 	}//fin else filas.
 }//Fin sumMat.
 
+void ingresarDatosMD(){
+	system("color 0b");
+	
+		cout << "Ingrese el numero de filas(F) de la matriz 1: "; 
+	cin  >> filas;
+		if (filas == false){         //Comprueba que el usuario ingrese un numero.
+			system("color 0c");
+			system("cls"); 
+			cout << "Opcion invalida. \n";
+			cin.clear();
+			fflush(stdin);
+				system("pause");
+    			system("cls"); 
+			return ingresarDatos();                 //Regresa al inicio de la funcion en caso de que no sea un numero.
+		}else{
+    		cout << "Ingrese el numero de columnas(C) de la matriz 1: "; 
+			cin  >> columnas;
+			if (columnas == false){         //Comprueba que el usuario ingrese un numero.
+				system("color 0c");
+				system("cls"); 
+				cout << "Opcion invalida. \n";
+				cin.clear();
+				fflush(stdin);
+					system("pause");
+    				system("cls"); 
+				return ingresarDatos();                 //Regresa al inicio de la funcion en caso de que no sea un numero.
+			}else{
+			
+    
+		}//Fin else columnas.
+	}//fin else filas.
+	
+	cout << "Ingrese el numero de filas(F) de la matriz 2: "; 
+	cin  >> filas;
+		if (filas == false){         //Comprueba que el usuario ingrese un numero.
+			system("color 0c");
+			system("cls"); 
+			cout << "Opcion invalida. \n";
+			cin.clear();
+			fflush(stdin);
+				system("pause");
+    			system("cls"); 
+			return ingresarDatos();                 //Regresa al inicio de la funcion en caso de que no sea un numero.
+		}else{
+    		cout << "Ingrese el numero de columnas(C) de la matriz 2: "; 
+			cin  >> columnas;
+			if (columnas == false){         //Comprueba que el usuario ingrese un numero.
+				system("color 0c");
+				system("cls"); 
+				cout << "Opcion invalida. \n";
+				cin.clear();
+				fflush(stdin);
+					system("pause");
+    				system("cls"); 
+				return ingresarDatos();                 //Regresa al inicio de la funcion en caso de que no sea un numero.
+			}else{
+				cout << " \n";
+				
+				cout << "Ingrese los datos de la matriz #1. \n";                
+	   				for (int i = 0; i < filas; i++) {
+    	    			for (int j = 0; j < columnas; j++) {
+       		     			cout << "F" << i << ", C" << j <<" -> ";
+							cin  >> matriz1[i][j];
+        				}
+    				}
+   				cout << " \n";
+				
+				cout << "Ingrese los datos de la matriz #2. \n";
+    			for (int i = 0; i < filas; i++) {
+       				for (int j = 0; j < columnas; j++) {
+          				cout << "F" << i << ", C" << j <<" -> ";
+						cin  >> matriz2[i][j];
+        		}
+    				}
+   			cout << " \n";
+    
+		}//Fin else columnas.
+	}//fin else filas.
+}//Fin sumMat.
+
 void imprimirMatriz(){
 	for (int i = 0; i < columnas; i++) {
     	for (int j = 0; j < filas; j++) {
@@ -167,7 +247,7 @@ int main(){
         	break; //Fin case 2;
         	
         	case 3: // opcion 3(multiplica dos matrices y lo muestra).
-        		ingresarDatos();
+        		ingresarDatosMD();
         			for (int i = 0; i < columnas; i++) { //este ciclo muestra la multiplicacion de las dos matricez.
     					for (int j = 0; j < filas; j++) {
     						cout << "F" << i << ", C" << j << " -> " << "M1: " 
@@ -188,7 +268,7 @@ int main(){
         	break; //Fin case 3;
         	
         	case 4: // opcion 4(divide dos matrices y lo muestra).
-        		ingresarDatos();
+        		ingresarDatosMD();
         			for (int i = 0; i < columnas; i++) { //este ciclo muestra la division de las dos matricez.
     					for (int j = 0; j < filas; j++) {
     						if (matriz2[i][j] == 0) {

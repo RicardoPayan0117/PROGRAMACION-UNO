@@ -9,14 +9,15 @@ using namespace std;
 	int aC, mesC, diaC;									//Cima fecha(fecha de la ultima cita).
 	int opcion, aux, citasPorDia;						//Se usa para elegir, se usa cuando se requiere una variable entera vacia.
 	int cimaCitas = 1, cimaDoc = 8;						//Cima de las matrices.
-	int numeroDoctores[10];								//Matriz para la cantidad de doctores
+	int numeroDoctores[12];								//Matriz para la cantidad de doctores
 	string dato, fh;									//Para guardar datos.
-	string doctores[10][4];								//Guarda los datos de los doctores.
+	string doctores[12][4];								//Guarda los datos de los doctores.
 	string citas[100][8];								//Guarda las citas del doctor1 : ID_Doctor, ID_Cita, paciente -> Nombre, Edad, sexo, Fecha, Hora. 
 
 	void fechaHora(); void inicializarDoctores(); void menuClientes(); void menuDoctores(); 
 	void opcionInvalida(); void salir();
-	void ingresarCita(); void mostrarCitas(); void eliminarCita();
+	void ingresarCita(); void mostrarCitas(); void eliminarCita(); void consultarCitas();
+	void ingresarDoctor(); void editarDoctor(); void eliminarDoctor(); void mostrarDoctores();
 	
 int main(){
 	system("color 0d");
@@ -73,6 +74,11 @@ int main(){
             	eliminarCita(); 
 					return main();             
             break;
+            
+            case 3: // Opcion 3(Eliminar una cita agendada). 
+            	consultarCitas(); 
+					return main();             
+            break;
           
             default: //cualquier otra opcion.
 				opcionInvalida();
@@ -108,6 +114,26 @@ int main(){
         	
 			case 1: // Opcion 4(Mostrar todos las citas). 
             	mostrarCitas();  
+					return main();             
+            break;
+            
+            case 2: // Opcion 2(permite ingresar un doctor). 
+            	ingresarDoctor(); 
+					return main();             
+            break;
+            
+            case 3: // Opcion 3(permite editar un doctor). 
+            	editarDoctor(); 
+					return main();             
+            break;
+            
+            case 4: // Opcion 4(permite eliminar un doctor). 
+            	eliminarDoctor(); 
+					return main();             
+            break;
+            
+             case 5: // Opcion 4(permite msotrar los doctores). 
+            	mostrarDoctores(); 
 					return main();             
             break;
             
@@ -210,6 +236,10 @@ void menuDoctores(){ //Muestra las opciones del programa
 		 << hora << ":" << minutos << ":" << segundos << ".\n";			//imprime la hora actual.
  	cout << " \n";
 	cout << "1) Mostrar citas. \n";
+	cout << "2) Ingresar Doctor. \n";
+	cout << "3) Editar Doctor. \n";
+	cout << "4) Eliminar Doctor. \n";
+	cout << "5) Mostrar Doctores. \n";
 	cout << " \n";
 	cout << "8) Return.  \n";
 	cout << "9) Salir.  \n";
@@ -226,8 +256,9 @@ void menuClientes(){ //Muestra las opciones del programa
 	cout << a << "/" << mes << "/" << dia << " ----> " 					//imprime la fecha actual.
 		 << hora << ":" << minutos << ":" << segundos << ".\n";			//imprime la hora actual.
  	cout << " \n";
-	cout << "1) Agendar cita. \n";
-	cout << "2) Eliminar cita. \n";
+	cout << "1) Agendar Cita. \n";
+	cout << "2) Eliminar Cita. \n";
+	cout << "3) Consultar Cita. \n";
 	cout << " \n";
 	cout << "8) Return.  \n";
 	cout << "9) Salir.  \n";
@@ -403,3 +434,158 @@ void mostrarCitas() { //Permite mostrar todas las citas.
 	system("pause");
  	system("cls");
 } // Fin funcion eliminar evento.
+
+void ingresarDoctor(){ //Funcion IngresarDoctor.
+	system("cls");
+	system("color 0a"); //Color rojo.
+	
+	cout << "Su ID de Docotor es: " <<cimaDoc << ". \n";	//Imprime tu ID.
+		fh = to_string(cimaDoc); 							//Convierte el ID a string.
+		doctores[cimaDoc][0] = fh; 							//Guarda el ID.
+		
+	cout << "Ingrese su nombre: ";
+		cin.ignore();                   					//No se para que es pero si lo quito no jala =(.
+	getline(cin, dato);                						//Pide el nombre del cliente.
+	doctores[cimaDoc][1] = dato; 							//Almacena en la matriz para guardarlo.  
+	cout << "Ingrese su especialidad: ";
+	getline(cin, dato);                 					//Pide la edad del cliente.
+	doctores[cimaDoc][2] = dato; 							//Almacena en la matriz para guardarlo.  
+  	
+  	doctores[cimaDoc][3] = "8AM-2PM y 4PM-6PM";				//Da el horario.
+	cout << "Su horario es: " << "8AM-2PM y 4PM-6PM \n";
+	
+	cimaDoc++;						 						//Aumenta la cima.
+  	system("pause");
+ 	system("cls");
+} //Fin funcion ingresarDoctor.
+
+void editarDoctor(){ //Funcion editarDoctor.
+	system("cls");
+	system("color 0a"); //Color verde.
+	
+	cout << "Ingrese el ID del doctor que desea editar: \n";
+	cin  >> opcion;													//Pide el ID de la cita a eliminar.
+		fh = to_string(opcion);										//Lo convierte a string y guarda en fh.
+		
+	if(opcion > 0 and opcion < cimaDoc){							//Valida que la cita sea valida.
+		system("color 0c"); //Color rojo.
+		
+		cout << "Para editarlo ingrese el codigo de seguridad: \n";
+		cin  >> dato;
+		if(dato == "KRLP"){
+			system("color 0a"); //Color verde.
+		
+			system("cls");
+			cout << "Su ID de Docotor es: " <<opcion << ". \n";	//Imprime tu ID.
+				fh = to_string(cimaDoc); 							//Convierte el ID a string.
+				doctores[cimaDoc][0] = fh; 							//Guarda el ID.
+			
+			cout << "EL nombre ingresado es: " << doctores[opcion][1] << ".\n";
+			cout << "Ingrese el nuevo nombre: ";
+			cin.ignore();                   						//No se para que es pero si lo quito no jala =(.
+			getline(cin, dato);                						//Pide el nombre del cliente.
+			doctores[opcion][1] = dato; 							//Almacena en la matriz para guardarlo.  
+			cout << "La especialidad ingresada es: " << doctores[opcion][2] << ".\n";
+			cout << "Ingrese la nueva especialidad: ";
+			getline(cin, dato);                 					//Pide la edad del cliente.
+			doctores[opcion][2] = dato; 							//Almacena en la matriz para guardarlo.  
+  	
+		  	doctores[opcion][3] = "8AM-2PM y 4PM-6PM";				//Da el horario.
+			cout << "Su horario es: " << "8AM-2PM y 4PM-6PM \n";
+			
+		}else{ 
+			cout << "El Pin que ingreso es incorrecto. "<<endl;
+				return eliminarCita();
+		}	
+	}else{cout << "El ID de doctor que ingreso no existe. "<<endl; }
+	
+
+	
+   	system("pause");
+ 	system("cls");
+} //Fin funcion editarDoctor.
+
+void eliminarDoctor(){ //Funcion eliminarDoctor.
+	system("cls");
+	system("color 0a"); //Color rojo.
+	
+	cout << "Ingrese el ID del doctor que desea eliminar: \n";
+	cin  >> opcion;													//Pide el ID de la cita a eliminar.
+		fh = to_string(opcion);										//Lo convierte a string y guarda en fh.
+		
+	if(opcion > 0 and opcion < cimaDoc){							//Valida que la cita sea valida.
+		system("color 0c"); //Color rojo.
+		
+		cout << "Para eliminarlo ingrese el codigo de seguridad: \n";
+		cin  >> dato;
+		if(dato == "KRLP"){
+			system("cls");
+			cout << "El doctor --> \n\n"
+					<< "ID_Doctor: " 	<< doctores[opcion][0] << " \n"
+					<< "Nombre: "<< doctores[opcion][1] << " \n"
+		 	 		<< "Especialidad: " 	<< doctores[opcion][2] << " \n"
+		 	 		<< "Horario " 	<< doctores[opcion][3] << " \n"
+			 		<< " \n-->Se elimino correctamente. "<<endl;   
+			for(int i = opcion; i < cimaCitas; i++){
+				aux = opcion + 1;		//aux siempre vale uno mas que opcion;
+				doctores[opcion][0] = doctores[aux][0];	//Guarda los datos del evento superior(aux) en la pocision inferior(opcion).	
+			 	doctores[opcion][1] = doctores[aux][1];
+				doctores[opcion][2] = doctores[aux][2];
+				doctores[opcion][3] = doctores[aux][3];	//...
+			}//Fin for.
+				cimaDoc--; //Reduce la cima para borrar el ultimo elemento que queda repetido
+		}else{ 
+			cout << "El Pin que ingreso es incorrecto. "<<endl;
+				return eliminarCita();
+		}	
+	}else{cout << "El ID de doctor que ingreso no existe. "<<endl; }
+	
+	system("pause");
+	system("cls");
+} //Fin funcion eliminarDoctor.
+
+void mostrarDoctores(){ //Funcion mostrarDoctores.
+	system("cls");
+	system("color 0a"); //Color rojo.
+	
+	cout << "Doctores: " <<endl;    		//Mensaje de inicio.
+	
+	for(int i = 1; i < cimaDoc; i++){ 		//Imprime los doctores.  
+		cout << "ID: " << doctores[i][0] << " \n"
+			 << "nombre: " << doctores[i][1] << " \n"
+			 << "Especialidad: " << doctores[i][2] << " \n"
+			 << "Horario: " << doctores[i][3] << " \n" 
+			 << " \n";   
+	}//Fin for imprimir doctores.
+	
+	system("pause");
+	system("cls");
+} //Fin funcion mostrarDoctores. 
+
+void consultarCitas(){ //Funcion consultar citas.
+	system("color 0a"); //Color morado.
+	
+	cout << "Ingrese su nombre para consultar su cita: ";
+		cin.ignore();                   						//No se para que es pero si lo quito no jala =(.
+			getline(cin, dato);                						//Pide el nombre del cliente.
+			doctores[opcion][1] = dato; 
+	
+	for(int i = 1; i <cimaCitas; i++){ //empieza desde el primer fila de la matriz hasta la cima que seria la ultima fila con eventos.  
+		if(citas[i][2] == dato){
+			cout
+			<< "ID_Cita: " 	<< citas[i][0] << " \n"
+			<< "ID_Doctor: "<< citas[i][1] << " \n"
+		 	<< "Nombre: " 	<< citas[i][2] << " \n"
+		 	<< "Edad: " 	<< citas[i][3] << " \n"
+			<< "Sexo: " 	<< citas[i][4] << " \n" 
+			<< "Motivo: " 	<< citas[i][5] << " \n"
+			<< "Fecha: " 	<< citas[i][6] << " \n" 
+			<< "Hora: " 	<< citas[i][7] << " \n"; 
+		}else{
+		cout << "No se encontraron citas con este nombre." <<endl;
+		}//Fin if-else.
+	}//Fin ciclo for.
+	
+	system("pause");
+	system("cls");
+} //Fin funcion consultarCitas.	
