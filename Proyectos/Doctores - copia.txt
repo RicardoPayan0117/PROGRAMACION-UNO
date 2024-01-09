@@ -1,0 +1,34 @@
+1								
+Juan Perez					.
+Otorrinolaringologo			
+8AM-2PM y 4PM-6PM	
+
+2
+Alberto Lopez
+Nutriologo
+8AM-2PM y 4PM-6PM	
+
+3
+Andrea Isabel
+Pediatra
+8AM-2PM y 4PM-6PM	
+
+4 
+Maleny Soto
+Cirugía general
+8AM-2PM y 4PM-6PM	
+
+5
+Jhony Bae
+Traumatologo
+8AM-2PM y 4PM-6PM
+
+6
+Alondra Urias"
+Radiologo
+8AM-2PM y 4PM-6PM		
+
+7
+Oscar Meza
+Cardiologo
+8AM-2PM y 4PM-6PM	

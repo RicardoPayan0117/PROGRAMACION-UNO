@@ -2,18 +2,18 @@
 #include <string.h>
 #include <iomanip>
 #include <ctime>
+#include <fstream>
 
 using namespace std;
 	
 	int a, mes, dia, hora, minutos, segundos; 			//se usan para guardar la hora y fecha actual.
 	int aC, mesC, diaC;									//Cima fecha(fecha de la ultima cita).
 	int opcion, aux, citasPorDia;						//Se usa para elegir, se usa cuando se requiere una variable entera vacia.
-	int cimaCitas = 1, cimaDoc = 8;						//Cima de las matrices.
+	int cimaCitas = 1, cimaDoc = 2;						//Cima de las matrices.
 	int numeroDoctores[12];								//Matriz para la cantidad de doctores
-	string dato, fh;									//Para guardar datos.
+	string dato, fh, txt ,linea, ingresarTexto;									//Para guardar datos.
 	string doctores[12][4];								//Guarda los datos de los doctores.
-	string citas[100][8];								//Guarda las citas del doctor1 : ID_Doctor, ID_Cita, paciente -> Nombre, Edad, sexo, Fecha, Hora. 
-
+	string citas[100][8];								//Guarda las citas del doctor1 : ID_Doctor, ID_Cita, paciente -> Nombre, Edad, sexo, Fecha, Hora. 	
 	void fechaHora(); void inicializarDoctores(); void menuClientes(); void menuDoctores(); 
 	void opcionInvalida(); void salir();
 	void ingresarCita(); void mostrarCitas(); void eliminarCita(); void consultarCitas();
@@ -21,6 +21,32 @@ using namespace std;
 	
 int main(){
 	system("color 0d");
+	
+		ifstream archivo("Doctores.txt"); //Abre la conexion con el txt.
+				int f = 1, c = 0;
+			while (getline(archivo, linea)){
+			    doctores[f][c] = linea;
+				c++;
+				if(c == 5){ 
+				c = 0;
+				f++;
+				cimaDoc++;
+				}else{}	
+			} 
+		ofstream archivo2("Doctores.txt"); //para ingresar texto.
+		
+		ifstream archivo3("Citas.txt"); //Abre la conexion con el txt.
+				int fi = 0, co = 0;
+			while (getline(archivo, linea)){
+			    citas[fi][co] = linea;
+				co++;
+				if(co == 9){ 
+				co = 0;
+				fi++;
+				cimaCitas++;
+				}else{}	
+			} 
+		ofstream archivo4("Citas.txt"); //para ingresar texto.
 		
 		fechaHora(); 
 		inicializarDoctores();
@@ -55,7 +81,25 @@ int main(){
 			return main();                 //Regresa al inicio del menu en caso de que no sea un numero.
 	}else{  //si, si es un numero entra al "else".
        switch(opcion){
-        	case 9: // opcion 0(cierra el programa).	
+        	case 9: // opcion 0(cierra el programa).
+			
+				ingresarTexto = "";
+			for(int i = 1; i < cimaDoc; i++){  //Se usa para guardar los datos de la matriuz en un txt antes de salir.
+				ingresarTexto = ingresarTexto + "\n" + doctores[i][0] + "\n" + doctores[i][1] + "\n" + doctores[i][2] + "\n" + doctores[i][3] //-
+				 + "\n"; //junta todos los datos en una sola variable separados pon un salto de linea.
+				 } 
+				archivo2 << ingresarTexto;//guarda los datos ya juntos en el .txt;
+				archivo.close();  //Cierra la conexion con el txt.
+				archivo2.close();  //Cierra la conexion con el txt.
+				
+			for(int i = 1; i < cimaCitas; i++){  //Se usa para guardar los datos de la matriuz en un txt antes de salir.
+				ingresarTexto = ingresarTexto + "\n" + citas[i][1] + "\n" + citas[i][2] + "\n" + citas[i][3] + "\n" + citas[i][4] //-
+				 + "\n" + citas[i][5] + "\n" + citas[i][6] + "\n" + citas[i][7] + "\n" + citas[i][8] + "\n"; //junta todos los datos en una sola variable separados pon un salto de linea.
+				 } 
+				archivo4 << ingresarTexto;//guarda los datos ya juntos en el .txt;
+				archivo3.close();  //Cierra la conexion con el txt.
+				archivo4.close();  //Cierra la conexion con el txt.
+					
         		salir();
         			return 0; // Cierra el programa.
         	break; //Fin case 0;
@@ -173,42 +217,7 @@ void fechaHora(){
 void inicializarDoctores(){
 
  aC = a, mesC = mes, diaC = dia + 1;
- 	
-doctores[1][0] = "1";								//ID del doctor.
-doctores[1][1] = "Juan Perez";						//Nombre.
-doctores[1][2] = "Otorrinolaringologo";				//Especialidad.
-doctores[1][3] = "8AM-2PM y 4PM-6PM";				//Horario.
-
-doctores[2][0] = "2";
-doctores[2][1] = "Alberto Lopez";
-doctores[2][2] = "Nutriologo";
-doctores[2][3] = "8AM-2PM y 4PM-6PM";	
-
-doctores[3][0] = "3";
-doctores[3][1] = "Andrea Isabel";
-doctores[3][2] = "Pediatra";
-doctores[3][3] = "8AM-2PM y 4PM-6PM";	
-
-doctores[4][0] = "4";
-doctores[4][1] = "Maleny Soto";
-doctores[4][2] = "Cirugía general";
-doctores[4][3] = "8AM-2PM y 4PM-6PM";	
-
-doctores[5][0] = "5";
-doctores[5][1] = "Jhony Bae";
-doctores[5][2] = "Traumatologo";
-doctores[5][3] = "8AM-2PM y 4PM-6PM";
-
-doctores[6][0] = "6";
-doctores[6][1] = "Alondra Urias";
-doctores[6][2] = "Radiologo";
-doctores[6][3] = "8AM-2PM y 4PM-6PM";		
-
-doctores[7][0] = "7";
-doctores[7][1] = "Oscar Meza";
-doctores[7][2] = "Cardiologo";
-doctores[7][3] = "8AM-2PM y 4PM-6PM";	
-
+ 
 } //Fin funcion inicializar doctores. 
 
 void opcionInvalida(){ //void para la opcion default.
