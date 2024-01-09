@@ -2,6 +2,7 @@
 #include <string.h>
 #include <iomanip>
 #include <ctime>
+#include <fstream>
 
 using namespace std;
 	
@@ -9,11 +10,97 @@ using namespace std;
 	int int1, int2, int3, int4, int5;               //se usan para alacenar datos de manera temporal.
 	int opcion;					     		  		//Lo usa el switch para elegir las opciones.
 	int aux, mf, mf1, mf3, add;						//se usa para cuando se necesita editar, mf= minutos faltantes y se usan al calcular minutos.
-	int editar = 0, cimaEventos = 1; 				//CimaEventos marca un espacio libre para agendar un evento.
+	int editar = 0, cimaEventos = 1; 	//CimaEventos marca un espacio libre para agendar un evento.
 	int eventosMin[100];
-	string eventos[100][5];    				  		//Esta matriz guarda los datos de los eventos(fecha, hora, lugar, nombre y descripcion).
-	string fh, dato;
-									//se usan para guardar los datos y creaer un acadena para almacenar ->fh. Se usa paragregar un dato que luego se manda a la matriz -> dato.   					        		   		
+	string eventos[100][6];    				  		//Esta matriz guarda los datos de los eventos(fecha, hora, lugar, nombre y descripcion).
+	string fh, dato, txt ,linea, ingresarTexto;								//se usan para guardar los datos y creaer un acadena para almacenar ->fh. Se usa paragregar un dato que luego se manda a la matriz -> dato.   					        		   		
+
+void menu();  void salir(); void opcionInvalida();
+void fechaHora(); void ingresarEvento(); void validarFecha(); void validarHora(); void calcularMinutos(); void editarEvento();
+void eliminarEvento(); void mostrarEventos(); void eventosSemana(); void cargarTXT(); void guardarTXT();
+
+int main(){
+	system("color 0d");
+	
+		ifstream archivo("Agenda.txt"); //Abre la conexion con el txt.
+				int f = 1, c = 0;
+			while (getline(archivo, linea)){
+			    eventos[f][c] =	linea;
+				c++;
+				if(c == 6){ 
+				c = 0;
+				f++;
+				cimaEventos++;
+				}else{}	
+			} 
+		ofstream archivo2("Agenda.txt"); //para ingresar texto.
+		
+		fechaHora(); 
+        menu();  
+		
+		cout << "Opcion: ";
+		cin  >> opcion; //Uso opcion para entrar en los case.
+ 		cout << " \n";
+ 		if (opcion == false){         //Comprueba que el usuario ingrese un numero.
+ 			system("cls");
+	system("color 0c"); //Color rojo.
+			cout << "Solo se aceptan numeros.  \n";
+			system("pause");
+			cin.clear();
+			fflush(stdin);
+			return main();                 //Regresa al inicio del menu en caso de que no sea un numero.
+	}else{  //si, si es un numero entra al "else".
+       switch(opcion){
+        	case 9: // opcion 0(cierra el programa).
+        	ingresarTexto = "";
+			for(int i = 1; i < cimaEventos; i++){  //Se usa para guardar los datos de la matriuz en un txt antes de salir.
+				ingresarTexto = ingresarTexto + "\n" + eventos[i][1] + "\n" + eventos[i][2] + "\n" + eventos[i][3] + "\n" + eventos[i][4] //-
+				 + "\n" + eventos[i][5] + "\n"; //junta todos los datos en una sola variable separados pon un salto de linea.
+				 } 
+				archivo2 << ingresarTexto;//guarda los datos ya juntos en el .txt;
+				archivo.close();  //Cierra la conexion con el txt.
+				archivo2.close();  //Cierra la conexion con el txt.
+        		salir();
+        		return 0; // Cierra el programa.
+        	break; //Fin case 0;
+        	
+            case 1: // Opcion 1(Permite ingresar una tarea nueva). 
+            	ingresarEvento();  
+				validarFecha(); 
+				validarHora();  
+				calcularMinutos();   
+						return main();       
+            break;
+            
+            case 2: // Opcion 2(Permite editar una tarea ya existente). 
+            	editarEvento();
+				calcularMinutos();
+					return main();               
+            break;
+            
+             case 3: // Opcion 3(Eliminar evento). 
+            	eliminarEvento(); 
+					return main();             
+            break;
+            
+            case 4: // Opcion 4(Mostrar todos los eventos). 
+            	mostrarEventos();  
+					return main();             
+            break;
+            
+			case 5: // Opcion 5(Mostrar todos los eventos de la semana). 
+            	eventosSemana();  
+					return main();           
+            break;
+            
+            default: //cualquier otra opcion.
+				opcionInvalida();
+				return main();
+            break;  
+            
+   	      }//fin switch.
+        }// else validacion.
+	}//Fin main.
 void menu(){ //Muestra las opciones del programa
 	system("color 0d"); //Color morado.
 	cout << " \n";
@@ -31,6 +118,10 @@ void menu(){ //Muestra las opciones del programa
 	cout << " \n";
 	cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";	cout <<endl;
 } //Fin funcion menu.
+
+void cargarTXT(){
+	
+}//Fin funcion cargar txt
 
 void fechaHora(){
 	
@@ -311,11 +402,11 @@ void mostrarEventos() { //Funcion opcion 4, muestra todos los eventos.
 		cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";		
 		for(int i = 1; i < cimaEventos; i++){ //empieza desde el primer fila de la matriz hasta la cima que seria la ultima fila con eventos.  
 		cout << "Evento #" << i << " \n"
-		 	 << "Nombre: " << eventos[i][1] << " \n"
-			 << "Descripcion: " << eventos[i][2]  
-			 << "Lugar: " << eventos[i][3] << " \n"
-			 << "Fecha: " << eventos[i][4] << " \n" 
-			 << "Hora: " << eventos[i][5]  << " \n"
+		 	 << "Nombre: " 		<< eventos[i][1] << " \n"
+			 << "Descripcion: " << eventos[i][2] << " \n" 
+			 << "Lugar: " 		<< eventos[i][3] << " \n"
+			 << "Fecha: " 		<< eventos[i][4] << " \n" 
+			 << "Hora: " 		<< eventos[i][5] << " \n"
 			 << " \n";   
 		}
 		cout << "___________________________________________________________________________________________________________________________________________________________________________________________________________________\n";		
@@ -521,64 +612,3 @@ void eliminarEvento(){ //Funcion eliminar evento.
 	system("cls");
 	}
 } // Fin funcion eliminar evento.
-
-int main(){
-	system("color 0d");
-		fechaHora(); 
-        menu();  
-		
-		cout << "Opcion: ";
-		cin  >> opcion; //Uso opcion para entrar en los case.
- 		cout << " \n";
- 		if (opcion == false){         //Comprueba que el usuario ingrese un numero.
- 			system("cls");
-	system("color 0c"); //Color rojo.
-			cout << "Solo se aceptan numeros.  \n";
-			system("pause");
-			cin.clear();
-			fflush(stdin);
-			return main();                 //Regresa al inicio del menu en caso de que no sea un numero.
-	}else{  //si, si es un numero entra al "else".
-       switch(opcion){
-        	case 9: // opcion 0(cierra el programa).	
-        		salir();
-        		return 0; // Cierra el programa.
-        	break; //Fin case 0;
-        	
-            case 1: // Opcion 1(Permite ingresar una tarea nueva). 
-            	ingresarEvento();  
-				validarFecha(); 
-				validarHora();  
-				calcularMinutos();   
-						return main();       
-            break;
-            
-            case 2: // Opcion 2(Permite editar una tarea ya existente). 
-            	editarEvento();
-				calcularMinutos();
-					return main();               
-            break;
-            
-             case 3: // Opcion 3(Eliminar evento). 
-            	eliminarEvento(); 
-					return main();             
-            break;
-            
-            case 4: // Opcion 4(Mostrar todos los eventos). 
-            	mostrarEventos();  
-					return main();             
-            break;
-            
-			case 5: // Opcion 5(Mostrar todos los eventos de la semana). 
-            	eventosSemana();  
-					return main();           
-            break;
-            
-            default: //cualquier otra opcion.
-				opcionInvalida();
-				return main();
-            break;  
-            
-   	      }//fin switch.
-        }// else validacion.
-	}//Fin main.
