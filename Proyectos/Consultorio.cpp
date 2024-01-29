@@ -9,7 +9,7 @@ using namespace std;
 	int a, mes, dia, hora, minutos, segundos; 			//se usan para guardar la hora y fecha actual.
 	int aC, mesC, diaC;									//Cima fecha(fecha de la ultima cita).
 	int opcion, aux, citasPorDia;						//Se usa para elegir, se usa cuando se requiere una variable entera vacia.
-	int cimaCitas = 1, cimaDoc = 2;						//Cima de las matrices.
+	int cimaCitas = 1, cimaDoc = 1;						//Cima de las matrices.
 	int numeroDoctores[12];								//Matriz para la cantidad de doctores
 	string dato, fh, txt ,linea, ingresarTexto;									//Para guardar datos.
 	string doctores[12][4];								//Guarda los datos de los doctores.
@@ -36,8 +36,8 @@ int main(){
 		ofstream archivo2("Doctores.txt"); //para ingresar texto.
 		
 		ifstream archivo3("Citas.txt"); //Abre la conexion con el txt.
-				int fi = 0, co = 0;
-			while (getline(archivo, linea)){
+				int fi = 1, co = 0;
+			while (getline(archivo3, linea)){
 			    citas[fi][co] = linea;
 				co++;
 				if(co == 9){ 
@@ -85,15 +85,16 @@ int main(){
 			
 				ingresarTexto = "";
 			for(int i = 1; i < cimaDoc; i++){  //Se usa para guardar los datos de la matriuz en un txt antes de salir.
-				ingresarTexto = ingresarTexto + "\n" + doctores[i][0] + "\n" + doctores[i][1] + "\n" + doctores[i][2] + "\n" + doctores[i][3] //-
+				ingresarTexto = ingresarTexto + doctores[i][0] + "\n" + doctores[i][1] + "\n" + doctores[i][2] + "\n" + doctores[i][3] //-
 				 + "\n"; //junta todos los datos en una sola variable separados pon un salto de linea.
 				 } 
 				archivo2 << ingresarTexto;//guarda los datos ya juntos en el .txt;
 				archivo.close();  //Cierra la conexion con el txt.
 				archivo2.close();  //Cierra la conexion con el txt.
-				
+			
+				ingresarTexto = "";
 			for(int i = 1; i < cimaCitas; i++){  //Se usa para guardar los datos de la matriuz en un txt antes de salir.
-				ingresarTexto = ingresarTexto + "\n" + citas[i][1] + "\n" + citas[i][2] + "\n" + citas[i][3] + "\n" + citas[i][4] //-
+				ingresarTexto = ingresarTexto + citas[i][1] + "\n" + citas[i][2] + "\n" + citas[i][3] + "\n" + citas[i][4] //-
 				 + "\n" + citas[i][5] + "\n" + citas[i][6] + "\n" + citas[i][7] + "\n" + citas[i][8] + "\n"; //junta todos los datos en una sola variable separados pon un salto de linea.
 				 } 
 				archivo4 << ingresarTexto;//guarda los datos ya juntos en el .txt;
@@ -146,7 +147,26 @@ int main(){
 			return main();                 //Regresa al inicio del menu en caso de que no sea un numero.
 	}else{  //si, si es un numero entra al "else".
        switch(opcion){
-        	case 9: // opcion 0(cierra el programa).	
+        	case 9: // opcion 0(cierra el programa).
+			
+				ingresarTexto = "";
+			for(int i = 1; i < cimaDoc; i++){  //Se usa para guardar los datos de la matriuz en un txt antes de salir.
+				ingresarTexto = ingresarTexto + doctores[i][0] + "\n" + doctores[i][1] + "\n" + doctores[i][2] + "\n" + doctores[i][3] //-
+				 + "\n"; //junta todos los datos en una sola variable separados pon un salto de linea.
+				 } 
+				archivo2 << ingresarTexto;//guarda los datos ya juntos en el .txt;
+				archivo.close();  //Cierra la conexion con el txt.
+				archivo2.close();  //Cierra la conexion con el txt.
+				
+				ingresarTexto = "";
+			for(int i = 1; i < cimaCitas; i++){  //Se usa para guardar los datos de la matriuz en un txt antes de salir.
+				ingresarTexto = ingresarTexto + citas[i][1] + "\n" + citas[i][2] + "\n" + citas[i][3] + "\n" + citas[i][4] //-
+				 + "\n" + citas[i][5] + "\n" + citas[i][6] + "\n" + citas[i][7] + "\n" + citas[i][8] + "\n"; //junta todos los datos en una sola variable separados pon un salto de linea.
+				 } 
+				archivo4 << ingresarTexto;//guarda los datos ya juntos en el .txt;
+				archivo3.close();  //Cierra la conexion con el txt.
+				archivo4.close();  //Cierra la conexion con el txt.
+					
         		salir();
         			return 0; // Cierra el programa.
         	break; //Fin case 9;
